@@ -16,7 +16,6 @@ const regexResponse =
 const responseButton = document.getElementById("responseButton");
 const alertMessage = document.getElementById("alertMessage");
 const response = document.getElementById("response");
-
 // les données du sessionStorage
 const listMusic = atob(sessionStorage.getItem("musics"));
 const arrayList = JSON.parse(listMusic);
@@ -29,7 +28,6 @@ let index = arrayList.findIndex((i) => i);
 let nameMusic;
 let imageMusic;
 let urlMusicList;
-
 function indexOfMusic(i) {
   nameMusic = arrayList[i].name;
   imageMusic = arrayList[i].imageUrl;
@@ -57,6 +55,7 @@ function stopTime() {
     score.style.display = "block";
     nextButton.style.display = "none";
   }
+  nextButton.focus();
 }
 // cette fonction permet d'afficher le minuteur et de le faire fonctionner
 let timeLeft;
@@ -78,21 +77,9 @@ function timeSecond() {
     }
   }, 1000);
 }
-// permet de lancer la lecture de la musique et d'activer le minuteur
-play.addEventListener("click", () => {
-  musicBlind
-    .play()
-    .then(() => {
-      timeSecond();
-      play.style.display = "none";
-      time.style.display = "block";
-      playerMusic.style.border = "0.4rem solid #4fd1c5";
-    })
-    .catch((err) => console.log(err));
-});
 
-// récupération de la réponse de l'utilisateur et vérification de sa véracité
-responseButton.addEventListener("click", (e) => {
+// Evenement au click sur le bouton validé
+function clickResponse(e) {
   e.preventDefault();
   e.stopPropagation();
   const valueResponse = response.value
@@ -128,6 +115,7 @@ responseButton.addEventListener("click", (e) => {
         <p>La réponse était bien ${nameMusic.toUpperCase()}</p>
       `;
     index += 1;
+    nextButton.focus();
     if (arrayList.length === index) {
       score.style.display = "block";
       nextButton.style.display = "none";
@@ -136,6 +124,31 @@ responseButton.addEventListener("click", (e) => {
   response.addEventListener("click", () => {
     alertMessage.style.display = "none";
   });
+}
+// permet de lancer la lecture de la musique et d'activer le minuteur
+play.addEventListener("click", () => {
+  musicBlind
+    .play()
+    .then(() => {
+      timeSecond();
+      play.style.display = "none";
+      time.style.display = "block";
+      playerMusic.style.border = "0.4rem solid #4fd1c5";
+    })
+    .catch((err) => console.log(err));
+});
+
+response.addEventListener("keydown", (e) => {
+  if (e.code === "Enter") {
+    e.preventDefault();
+    responseButton.click((e) => {
+      clickResponse(e);
+    });
+  }
+});
+// récupération de la réponse de l'utilisateur et vérification de sa véracité
+responseButton.addEventListener("click", (e) => {
+  clickResponse(e);
 });
 
 nextButton.addEventListener("click", () => {

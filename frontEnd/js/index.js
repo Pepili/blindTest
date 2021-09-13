@@ -30,8 +30,7 @@ function signupUser(username) {
     .catch(() => console.log("error"));
 }
 
-// On déclenche l'ajout de l'user au click sur commencer
-buttonReady.addEventListener("click", (e) => {
+function eventButton(e) {
   e.preventDefault();
   e.stopPropagation();
   // on declenche une musique au click
@@ -45,6 +44,19 @@ buttonReady.addEventListener("click", (e) => {
     return;
   }
   signupUser(username);
+}
+
+pseudo.addEventListener("keydown", (e) => {
+  if (e.code === "Enter") {
+    e.preventDefault();
+    buttonReady.click((e) => {
+      eventButton(e);
+    });
+  }
+});
+
+buttonReady.addEventListener("click", (e) => {
+  eventButton(e);
 });
 
 // Au click sur l'input, on retire le message d'erreur
