@@ -4,18 +4,9 @@ const buttonReady = document.getElementById("buttonReady");
 const audioButton = document.getElementById("audioButton");
 const alertUser = document.getElementById("alertUser");
 const pseudo = document.getElementById("pseudo");
-buttonReady.addEventListener("click", (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  audioButton.play();
-  const username = pseudo.value.trim();
-  if (!regex.test(username)) {
-    alert(
-      "Ton pseudo n'est pas valide, il doit contenir au minimum 2 caractères et au maximum 20..."
-    );
-    return;
-  }
 
+// On vérifie si l'user existe déjà dans la db
+function signupUser(username) {
   const data = JSON.stringify({ username });
   fetch("http://localhost:3000/api/names/signup", {
     method: "POST",
@@ -26,17 +17,39 @@ buttonReady.addEventListener("click", (e) => {
   })
     .then(async (response) => {
       await response.json();
+      // Si il existe déjà, on retourne un message d'erreur
       if (response.status === 500) {
         pseudo.value = "";
         alertUser.style.display = "block";
+        // Sinon on ajoute le nom d'user au localStorage et on passe à la page suivante
       } else {
         localStorage.setItem("pseudo", username);
         window.location = "./assets/html/category.html";
       }
     })
     .catch(() => console.log("error"));
+}
+
+// On déclenche l'ajout de l'user au click sur commencer
+buttonReady.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  // on declenche une musique au click
+  audioButton.play();
+  // On récupere le nom écrit par l'user dans l'input
+  const username = pseudo.value.trim();
+  if (!regex.test(username)) {
+    alert(
+      "Ton pseudo n'est pas valide, il doit contenir au minimum 2 caractères et au maximum 20..."
+    );
+    return;
+  }
+  signupUser(username);
 });
+
+// Au click sur l'input, on retire le message d'erreur
 pseudo.addEventListener("click", () => {
   alertUser.style.display = "none";
 });
+// On vide le localStorage à l'arrivé sur la page
 localStorage.clear();
