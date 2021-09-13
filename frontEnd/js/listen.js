@@ -11,13 +11,18 @@ const time = document.getElementById("time");
 const score = document.getElementById("score");
 const nextButton = document.getElementById("nextButton");
 const audioButton = document.getElementById("audioButton");
+const regexResponse =
+  /^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ' -]{2,50}$/;
+const responseButton = document.getElementById("responseButton");
+const alertMessage = document.getElementById("alertMessage");
+const response = document.getElementById("response");
 
-// les données du localStorage
-const listMusic = atob(localStorage.getItem("musics"));
+// les données du sessionStorage
+const listMusic = atob(sessionStorage.getItem("musics"));
 const arrayList = JSON.parse(listMusic);
 const lengthMusic = arrayList.length;
-const typeLocal = localStorage.getItem("type");
-const usernameLocal = localStorage.getItem("pseudo");
+const typeLocal = sessionStorage.getItem("type");
+const usernameLocal = sessionStorage.getItem("pseudo");
 
 // récupération des données par rapport à l'index
 let index = arrayList.findIndex((i) => i);
@@ -35,6 +40,24 @@ function indexOfMusic(i) {
 }
 indexOfMusic(index);
 
+function stopTime() {
+  alertMessage.style.display = "none";
+  clearInterval(timeId);
+  index += 1;
+  // permet de remettre à 0 le lecteur audio
+  musicBlind.currentTime = 0;
+  lecteur.style.display = "none";
+  resultat.style.display = "block";
+  resultatMessage.innerHTML = `
+    <h2>La réponse était ${nameMusic.toUpperCase()}</h2>
+    <img class="imageMusic" src="${imageMusic}" alt="${nameMusic}"/>
+    <p>Dommage, tu feras mieux à la prochaine !</p>
+  `;
+  if (arrayList.length === index) {
+    score.style.display = "block";
+    nextButton.style.display = "none";
+  }
+}
 // cette fonction permet d'afficher le minuteur et de le faire fonctionner
 let timeLeft;
 let timeId;
@@ -43,22 +66,7 @@ function timeSecond() {
   timeId = setInterval(() => {
     if (timeLeft == 0) {
       musicBlind.pause();
-      alertMessage.style.display = "none";
-      clearInterval(timeId);
-      index += 1;
-      // permet de remettre à 0 le lecteur audio
-      musicBlind.currentTime = 0;
-      lecteur.style.display = "none";
-      resultat.style.display = "block";
-      resultatMessage.innerHTML = `
-        <h2>La réponse était ${nameMusic.toUpperCase()}</h2>
-        <img class="imageMusic" src="${imageMusic}" alt="${nameMusic}"/>
-        <p>Dommage, tu feras mieux à la prochaine !</p>
-      `;
-      if (arrayList.length === index) {
-        score.style.display = "block";
-        nextButton.style.display = "none";
-      }
+      stopTime();
     } else {
       // permet d'afficher correctement le minuteur
       if (timeLeft < 10) {
@@ -84,11 +92,6 @@ play.addEventListener("click", () => {
 });
 
 // récupération de la réponse de l'utilisateur et vérification de sa véracité
-const regexResponse =
-  /^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ' -]{2,50}$/;
-const responseButton = document.getElementById("responseButton");
-const alertMessage = document.getElementById("alertMessage");
-const response = document.getElementById("response");
 responseButton.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
@@ -109,13 +112,13 @@ responseButton.addEventListener("click", (e) => {
     lecteur.style.display = "none";
     musicBlind.pause();
     clearInterval(timeId);
-    let scoreAddLocalStorage = JSON.parse(localStorage.getItem("score"));
-    if (scoreAddLocalStorage) {
-      const numberScore = Number(scoreAddLocalStorage);
+    let scoreAddsessionStorage = JSON.parse(sessionStorage.getItem("score"));
+    if (scoreAddsessionStorage) {
+      const numberScore = Number(scoreAddsessionStorage);
       const resultatScore = numberScore + 1;
-      localStorage.setItem("score", JSON.stringify(resultatScore));
+      sessionStorage.setItem("score", JSON.stringify(resultatScore));
     } else {
-      localStorage.setItem("score", "1");
+      sessionStorage.setItem("score", "1");
     }
     musicBlind.currentTime = 0;
     resultat.style.display = "block";
@@ -149,6 +152,7 @@ nextButton.addEventListener("click", () => {
 
 function recordScore(username, type, number, score) {
   const data = JSON.stringify({ username, type, number, score });
+  // On ajoute à la db le score de l'user
   fetch("http://localhost:3000/api/scores/", {
     method: "POST",
     headers: {
@@ -158,14 +162,8 @@ function recordScore(username, type, number, score) {
   })
     .then(async (responseUserScore) => {
       await responseUserScore.json();
-      const scoreLocal = Number(localStorage.getItem("score"));
-      console.log(scoreLocal <= lengthMusic);
-      console.log(lengthMusic);
+      const scoreLocal = Number(sessionStorage.getItem("score"));
       if (responseUserScore.status === 201 && scoreLocal <= lengthMusic) {
-        window.addEventListener("beforeunload", (e) => {
-          localStorage.removeItem("score");
-          return e.preventDefault;
-        });
         window.location = "score.html";
       } else {
         alert("Enregistrement du score impossible");
@@ -176,31 +174,14 @@ function recordScore(username, type, number, score) {
 
 score.addEventListener("click", () => {
   audioButton.play();
-  const scoreLocal = Number(localStorage.getItem("score"));
-  localStorage.setItem("scores", scoreLocal);
+  const scoreLocal = Number(sessionStorage.getItem("score"));
   recordScore(usernameLocal, typeLocal, lengthMusic, scoreLocal);
 });
 
 const pass = document.getElementById("pass");
 pass.addEventListener("click", () => {
   musicBlind.pause();
-  alertMessage.style.display = "none";
-  clearInterval(timeId);
-  index += 1;
-  // permet de remettre à 0 le lecteur audio
-  musicBlind.currentTime = 0;
-  lecteur.style.display = "none";
-  resultat.style.display = "block";
-  resultatMessage.innerHTML = `
-    <h2>La réponse était ${nameMusic.toUpperCase()}</h2>
-    <img class="imageMusic" src="${imageMusic}" alt="${nameMusic}"/>
-    <p>Dommage, tu feras mieux à la prochaine !</p>
-  `;
-  if (arrayList.length === index) {
-    score.style.display = "block";
-    nextButton.style.display = "none";
-  }
+  stopTime();
 });
 
-localStorage.removeItem("score");
-localStorage.removeItem("scores");
+sessionStorage.removeItem("score");
