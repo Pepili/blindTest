@@ -1,0 +1,239 @@
+.headerCategory {
+  margin: 20px;
+  margin-top: 0;
+  .titleLogo {
+    font-size: 30px;
+    margin: 0;
+    color: $color-secondary;
+    font-family: "crooked";
+    line-height: 66px;
+  }
+  .logoGifCategory {
+    width: 120px;
+    @media all and (max-width: 500px) {
+      width: 100px;
+    }
+  }
+}
+.sectionCategory {
+  position: relative;
+  width: 80%;
+  max-width: 700px;
+  height: auto;
+  background: #02303e59;
+  box-sizing: border-box;
+  box-shadow: 0 20px 50px rgb(23, 82, 90);
+  border: 2px solid $color-primary;
+  border-radius: 10px;
+  color: white;
+  padding: 20px;
+  margin: 60px auto;
+  #startMusic {
+    border: 1px solid $color-secondary;
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(9, 0, 0, 0.5);
+    display: none;
+    #cross {
+      color: $color-secondary;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .elementStart {
+      text-align: center;
+    }
+    #titleCategoryMusic {
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      font-size: 24px;
+      color: $color-primary;
+      margin-bottom: 40px;
+    }
+    label {
+      font-size: 20px;
+    }
+    #rangeValue {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      position: relative;
+      display: block;
+      text-align: center;
+      font-size: 25px;
+      color: $color-secondary;
+      font-weight: 400;
+    }
+    .slider {
+      -webkit-appearance: none;
+      width: 50%;
+      height: 10px;
+      background: rgba(0, 0, 0, 0);
+      outline: none;
+      border: 5px solid $color-primary;
+      box-shadow: 0 20px 50px rgb(23, 82, 90);
+      border-radius: 8px;
+    }
+
+    /* for chrome/safari */
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 35px;
+      background: $color-secondary;
+      cursor: pointer;
+      border: 5px solid $color-primary;
+      border-radius: 4px;
+    }
+
+    /* for firefox */
+    .slider::-moz-range-thumb {
+      width: 15px;
+      height: 35px;
+      background: $color-secondary;
+      cursor: pointer;
+      border: 5px solid $color-primary;
+      border-radius: 4px;
+    }
+    .startButtonMusic {
+      text-decoration: none;
+      text-align: center;
+      font-family: "caviar";
+      margin-top: 60px;
+      margin-bottom: 30px;
+      min-width: 200px;
+      min-height: 50px;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-weight: 700;
+      color: #313133;
+      background: #4fd1c5;
+      background: linear-gradient(
+        90deg,
+        rgba(129, 230, 217, 1) 0%,
+        rgba(79, 209, 197, 1) 100%
+      );
+      border: none;
+      border-radius: 1000px;
+      box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
+      transition: all 0.3s ease-in-out 0s;
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      padding: 10px;
+      &:before {
+        content: "";
+        border-radius: 1000px;
+        min-width: calc(200px + 12px);
+        min-height: calc(50px + 12px);
+        border: 6px solid #00ffcb;
+        box-shadow: 0 0 60px rgba(0, 255, 203, 0.64);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: all 0.3s ease-in-out 0s;
+      }
+      &:hover,
+      &:focus {
+        color: #313133;
+        transform: translateY(-6px);
+      }
+      &:hover::before,
+      &:focus::before {
+        opacity: 1;
+      }
+      &:hover::after,
+      &:focus::after {
+        display: none;
+      }
+    }
+  }
+  .scriptCategory {
+    border: 1px solid $color-secondary;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(9, 0, 0, 0.5);
+  }
+  .titleCategory {
+    text-align: center;
+    color: $color-primary;
+    letter-spacing: 1.3px;
+    font-size: 28px;
+    @media all and (max-width: 500px) {
+      font-size: 22px;
+    }
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 50px;
+    &:after {
+      content: "";
+      height: 2px;
+      width: 15%;
+      @media all and (max-width: 500px) {
+        width: 20%;
+        left: 20%;
+      }
+      background-color: $color-primary;
+      position: absolute;
+      bottom: -8px;
+      left: 27%;
+      transform: translate(100%);
+    }
+  }
+  .nameCategory {
+    ul {
+      list-style: none;
+      padding: 0;
+      .categoryYellow,
+      .categoryBlue {
+        width: 60%;
+        font-size: 25px;
+        cursor: pointer;
+        @media all and (max-width: 500px) {
+          font-size: 20px;
+          width: 80%;
+          margin-bottom: 20px;
+        }
+        text-align: center;
+        margin: auto;
+        height: 50px;
+        line-height: 50px;
+        margin-bottom: 40px;
+        display: block;
+        position: relative;
+        padding: 0.2em 0;
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: 3px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          opacity: 0;
+          transition: opacity 300ms, transform 300ms;
+        }
+        &:hover::after {
+          opacity: 1;
+          transform: translate3d(0, 0.2em, 0);
+        }
+      }
+      .categoryYellow {
+        &:after {
+          background-color: $color-secondary;
+        }
+      }
+      .categoryBlue {
+        &:after {
+          background-color: $color-primary;
+        }
+      }
+    }
+  }
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kelzic est un blind test sur les films, séries, jeux-vidéos, dessin-animés et émissions télé
+      à jouer seul ou en équipe!"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css" />
+    <title>KelZic</title>
+  </head>
+  <body>
+    <!-- <div class="loader"></div>
+    <div class="patienter"><p>Ca va commencer !</p></div> -->
+    <div class="page">
+      <header class="headerCategory">
+        <h1 class="titleLogo">KelZic</h1>
+      </header>
+      <section class="listen sectionCategory">
+        <div id="lecteur">
+          <h2 class="listenTitle">Devine c'est KelZic !!</h2>
+          <div id="numberMusic"></div>
+          <div class="playCenter">
+            <div class="player" id="playerMusic">
+              <i class="fas fa-play" id="play"></i>
+              <div class="time" id="time">01:00</div>
+            </div>
+          </div>
+          <audio src="" id="musicBlind" loop></audio>
+          <div class="inputMusic" id="inputMusic">
+            <input
+              type="text"
+              required
+              minlength="2"
+              maxlength="130"
+              class="nameMusic"
+              id="response"
+              placeholder="Tape la réponse ici !"
+            />
+            <div class="alertMessage" id="alertMessage">
+              Soit c'est pas ça, soit c'est mal écrit! (pense au pluriel..)
+            </div>
+            <button class="button" id="responseButton">Validé</button>
+            <button id="pass">passé</button>
+          </div>
+        </div>
+        <div class="resultat" id="resultat">
+          <div id="resultatMessage"></div>
+          <audio src="/assets/musics/button.mp3" id="audioButton"></audio>
+          <button class="button" id="nextButton">Suivant</button>
+          <button class="button" id="score">Résultat</button>
+        </div>
+        <div class="disclaimer">
+          <p>
+            <i class="fas fa-exclamation-triangle"></i> Si vous rechargez la
+            page ou que vous faîtes retour, vous perdrez toutes votre
+            progression
+          </p>
+        </div>
+      </section>
+    </div>
+    <footer class="footerListen">
+      <div class="retour">
+        <i class="fas fa-arrow-left"></i>
+        <a href="./category.html" alt="categorie" id="retour">Retour</a>
+      </div>
+      <a href="#" alt="support" id="support">Support</a>
+    </footer>
+    <script src="/js/listen.js"></script>
+  </body>
+</html>

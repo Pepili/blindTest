@@ -1,0 +1,225 @@
+.listen {
+  text-align: center;
+  margin-top: 50px;
+  .listenTitle {
+    font-family: "crooked";
+    color: $color-secondary;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+}
+.alertMessage {
+  margin-top: 20px;
+  font-size: 16px;
+  color: $color-secondary;
+  display: none;
+}
+.resultat {
+  display: none;
+}
+#resultatMessage {
+  h2 {
+    color: $color-primary;
+  }
+  .imageMusic {
+    width: 80%;
+    margin: auto;
+    border: 2px solid $color-secondary;
+    padding: 10px;
+  }
+  p {
+    font-size: 20px;
+  }
+}
+#numberMusic {
+  font-size: 24px;
+  margin-bottom: 50px;
+  color: $color-primary;
+  font-weight: bold;
+}
+.nameMusic {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px rgba(255, 255, 255, 0.7) solid;
+  border-radius: 7px;
+  color: rgba(255, 255, 255, 0.8);
+  height: 50px;
+  font-size: 18px;
+  padding: 0 10px;
+  margin: auto;
+  margin-top: 20px;
+  width: 70%;
+  max-width: 300px;
+  font-family: "caviar";
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  &:focus-visible {
+    outline: 1px solid transparent;
+    border: 3px #4fd1c5 solid;
+    border-radius: 7px;
+  }
+}
+.playCenter {
+  display: flex;
+  justify-content: center;
+}
+:root {
+  --button-height: 2rem;
+}
+
+.player {
+  width: 4rem;
+  height: 4rem;
+  padding: 2rem;
+  border: 0.2rem solid $color-secondary;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 3.1rem $color-secondary);
+  margin-bottom: 30px;
+
+  i {
+    color: $color-primary;
+    font-size: 40px;
+    line-height: 65px;
+  }
+}
+#play {
+  cursor: pointer;
+}
+.time {
+  font-size: 30px;
+  margin-top: 20px;
+  color: $color-secondary;
+  font-family: "digital";
+  display: none;
+  cursor: default;
+}
+#score {
+  display: none;
+}
+.disclaimer {
+  color: $color-secondary;
+}
+.inputMusic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button {
+  text-decoration: none;
+  text-align: center;
+  font-family: "caviar";
+  margin: auto;
+  margin-top: 35px;
+  margin-bottom: 20px;
+  min-width: calc(290px + 12px);
+  min-height: calc(50px + 12px);
+  @media all and (max-width: 550px) {
+    min-width: calc(190px + 12px);
+    min-height: calc(25px + 12px);
+    font-size: 18px;
+  }
+  max-width: 300px;
+  min-height: 60px;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4fd1c5;
+  background: linear-gradient(
+    90deg,
+    rgba(129, 230, 217, 1) 0%,
+    rgba(79, 209, 197, 1) 100%
+  );
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  &:before {
+    content: "";
+    border-radius: 1000px;
+    min-width: calc(300px + 12px);
+    min-height: calc(60px + 12px);
+    border: 6px solid #00ffcb;
+    box-shadow: 0 0 60px rgba(0, 255, 203, 0.64);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out 0s;
+    @media all and (max-width: 550px) {
+      min-width: calc(200px + 12px);
+      min-height: calc(40px + 12px);
+    }
+  }
+  &:hover,
+  &:focus {
+    color: #313133;
+    transform: translateY(-6px);
+  }
+  &:hover::before,
+  &:focus::before {
+    opacity: 1;
+  }
+  &:hover::after,
+  &:focus::after {
+    display: none;
+  }
+}
+#pass {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1.4px;
+  cursor: pointer;
+  position: relative;
+  line-height: 25px;
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    opacity: 0;
+    transition: opacity 300ms, transform 300ms;
+    background-color: $color-primary;
+  }
+  &:hover::after {
+    opacity: 1;
+    transform: translate3d(0, 0.2em, 0);
+  }
+  &:hover {
+    color: $color-secondary;
+  }
+}
+.footerListen {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  i {
+    color: $color-primary;
+    font-size: 10px;
+  }
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  #retour {
+    color: $color-primary;
+  }
+  #support {
+    color: $color-secondary;
+  }
+}

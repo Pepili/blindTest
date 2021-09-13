@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kelzic est un blind test sur les films, séries, jeux-vidéos, dessin-animés et émissions télé
+      à jouer seul ou en équipe!"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css" />
+    <title>KelZic</title>
+  </head>
+  <body>
+    <header class="headerCategory">
+      <h1 class="titleLogo">KelZic</h1>
+    </header>
+    <section class="sectionCategory">
+      <div id="startMusic">
+        <i class="fas fa-times" id="cross"></i>
+        <div class="elementStart">
+          <h3 id="titleCategoryMusic"></h3>
+          <form>
+            <label for="numberMusic">Choisissez le nombre de musiques</label>
+            <span id="rangeValue">10</span>
+            <input
+              type="range"
+              min="10"
+              value="10"
+              class="slider"
+              id="myRange"
+              step="10"
+              name="numberMusic"
+              onchange="rangeSlide(this.value)"
+              onmousemove="rangeSlide(this.value)"
+            />
+          </form>
+          <audio src="/assets/musics/button.mp3" id="audioButton"></audio>
+          <button class="startButtonMusic" id="startButtonMusic">
+            C'est parti !
+          </button>
+        </div>
+      </div>
+      <div class="scriptCategory" id="scriptCategory">
+        <h2 class="titleCategory">Catégories</h2>
+        <div class="nameCategory">
+          <audio src="/assets/musics/category.mp3" id="audioCategory"></audio>
+          <ul id="listCategory">
+            <li class="categoryBlue" type="Toute Catégories">
+              Toute Catégories
+            </li>
+            <li class="categoryYellow" type="Films">Films</li>
+            <li class="categoryBlue" type="Dessin-animées">Dessin-animées</li>
+            <li class="categoryYellow" type="Emissions télé">Emissions télé</li>
+            <li class="categoryBlue" type="Jeux-vidéos">Jeux-vidéos</li>
+            <li class="categoryYellow" type="Mangas">Mangas</li>
+            <li class="categoryBlue" type="Séries">Séries</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <script src="/js/category.js"></script>
+  </body>
+</html>

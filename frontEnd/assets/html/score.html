@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kelzic est un blind test sur les films, séries, jeux-vidéos, dessin-animés et émissions télé
+      à jouer seul ou en équipe!"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css" />
+    <title>KelZic</title>
+  </head>
+  <body>
+    <header class="headerWelcome">
+      <img
+        class="logoGif"
+        id="logoScore"
+        alt="logo"
+        src="../images/logo4.png"
+      />
+      <h1 class="titleWelcome" id="scoreTitleHeader">KelZic</h1>
+    </header>
+    <section class="scoreSection" id="scoreSection">
+      <h2 id="scoreUser"></h2>
+      <table class="scoreList" id="scoreList">
+        <caption id="titleTable"></caption>
+        <thead>
+          <tr>
+            <th class="pseudoTitle">Pseudos</th>
+            <th class="scoreTitle">Scores</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <audio src="/assets/musics/button.mp3" id="audioButton"></audio>
+      <div id="listButton">
+        <button class="button" id="returnButton">Catégories</button>
+        <a href="/index.html" alt="accueil" id="linkAccueil"
+          >Changer de pseudo</a
+        >
+      </div>
+    </section>
+    <script src="/js/score.js"></script>
+  </body>
+</html>
