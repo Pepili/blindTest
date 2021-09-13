@@ -1,11 +1,11 @@
-// permet de traduire les données du localStorage
-const listMusic = atob(localStorage.getItem("musics"));
+// permet de traduire les données du sessionStorage
+const listMusic = atob(sessionStorage.getItem("musics"));
 const arrayList = JSON.parse(listMusic);
 const lengthMusic = arrayList.length;
 
-// récupération des éléments du localStorage
-const type = localStorage.getItem("type");
-const scoreLocal = localStorage.getItem("scores");
+// récupération des éléments du sessionStorage
+const type = sessionStorage.getItem("type");
+const scoreLocal = sessionStorage.getItem("score");
 
 // récupérer élément du DOM
 const titleTable = document.getElementById("titleTable");
@@ -50,8 +50,8 @@ const returnButton = document.getElementById("returnButton");
 
 returnButton.addEventListener("click", () => {
   audioButton.play();
-  localStorage.removeItem("scores");
-  localStorage.removeItem("type");
-  localStorage.removeItem("musics");
+  sessionStorage.removeItem("score");
+  sessionStorage.removeItem("type");
+  sessionStorage.removeItem("musics");
   window.location = "category.html";
 });
