@@ -21,9 +21,9 @@ function signupUser(username) {
       if (response.status === 500) {
         pseudo.value = "";
         alertUser.style.display = "block";
-        // Sinon on ajoute le nom d'user au localStorage et on passe à la page suivante
+        // Sinon on ajoute le nom d'user au sessionStorage et on passe à la page suivante
       } else {
-        localStorage.setItem("pseudo", username);
+        sessionStorage.setItem("pseudo", username);
         window.location = "./assets/html/category.html";
       }
     })
@@ -51,5 +51,5 @@ buttonReady.addEventListener("click", (e) => {
 pseudo.addEventListener("click", () => {
   alertUser.style.display = "none";
 });
-// On vide le localStorage à l'arrivé sur la page
-localStorage.clear();
+// On vide le sessionStorage à l'arrivé sur la page
+sessionStorage.clear();
