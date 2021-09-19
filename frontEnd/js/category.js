@@ -21,22 +21,20 @@ function rangeSlide(value) {
 
 /* Au click sur le bouton C'est parti, on fait une req post pour récuperer 
      des musiques en fct de la catégorie et au nombre sélectionné par l'utilisateur */
-function musicCategory(types) {
+function musicCategory(types, type) {
   startButtonMusic.addEventListener("click", () => {
     audioButton.play();
     // On récupère le nombre du range
     const valueRange = myRange.value;
     let data;
-    const type = types.length == 1 ? types[0] : "Toute catégories";
     sessionStorage.setItem("type", type);
-    if (types.length > 1) {
+    if (type == "Toute Catégories") {
       data = JSON.stringify({
         random: parseInt(valueRange),
         types,
       });
     } else {
-      data = JSON.stringify({ random: parseInt(valueRange), types });
-      console.log(data);
+      data = JSON.stringify({ random: parseInt(valueRange), types: [type] });
     }
     // On fait la requete pour récupérer les musiques
     fetch("http://localhost:3000/api/musics/", {
@@ -51,7 +49,7 @@ function musicCategory(types) {
         const response = await responseButton.json();
         // Si la requête réussie, on crypte les données et on les ajoutent au sessionStorage
         sessionStorage.setItem("musics", btoa(JSON.stringify(response)));
-        /* window.location = "music.html"; */
+        window.location = "music.html";
       })
       .catch((err) => console.log(err));
   });
@@ -69,7 +67,7 @@ async function rangeMusic(response, type) {
 }
 
 // On fait apparaitre le block choix du nb de musique
-async function clickCategory(response, type) {
+async function clickCategory(response, types, type) {
   rangeMusic(response, type);
   // On fait apparaitre le block startMusic et on fait disparaitre le block scriptCategory
   startMusic.style.display = "block";
@@ -84,7 +82,7 @@ async function clickCategory(response, type) {
     rangeValue.innerHTML = myRange.value;
     audioButton.play();
   });
-  musicCategory(type);
+  musicCategory(types, type);
 }
 
 // On fait apparaitre le block choix des catégories
@@ -100,42 +98,28 @@ function allCategory(type) {
     checkDiv.style.display = "none";
     scriptCategory.style.display = "block";
     myRange.value = "10";
+    // AJOUTER DECOCHAGE
     rangeValue.innerHTML = myRange.value;
     audioButton.play();
   });
 }
 
-// On envoie la req vers la db pour récupérer les musiques des catégories choisies
-function allCategoryMusics(typeLabel) {
-  data = JSON.stringify({ random: parseInt(valueRange), type: typeLabel });
-  // On fait la requete pour récupérer les musiques
-  fetch("http://localhost:3000/api/musics/", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "content-type": "application/json",
-    },
-    body: data,
-  });
-}
-
 // On calcule le total des musiques dispos des catégories choisies
-async function allMusicCategory(response, types) {
+async function allMusicCategory(response, types, type) {
   const responseMusic = await response.json();
   myRange.setAttribute("max", responseMusic.length);
   // On fait apparaitre le block startMusic et on fait disparaitre le block scriptCategory
   startMusic.style.display = "block";
   checkDiv.style.display = "none";
   // On ajoute dans titre le nom du type du li
-  document.getElementById("titleCategoryMusicCheck").innerHTML =
-    types.length == 1 ? types[0] : "Toute catégories";
+  document.getElementById("titleCategoryMusicCheck").innerHTML = type;
   // On inverse les effets des styles précédents au click sur la croix
   cross.addEventListener("click", () => {
     checkDiv.style.display = "block";
     startMusic.style.display = "none";
     audioButton.play();
   });
-  musicCategory(types);
+  musicCategory(types, type);
 }
 
 /*  On ajoute un évènement au click sur chaque li afin de connaitre le nombre de musique disponible 
@@ -149,10 +133,10 @@ listCategory.forEach((e) => {
   e.addEventListener("click", () => {
     const type = e.getAttribute("type");
     let data;
+    const types = [];
     // On execute la requete en fonction du type
     if (type == "Toute Catégories") {
       allCategory(type);
-      const types = [];
       const inputCheck = document.querySelectorAll("#checkType > p > input");
       inputCheck.forEach((a) => {
         a.addEventListener("click", () => {
@@ -169,7 +153,9 @@ listCategory.forEach((e) => {
           },
           body: data,
         })
-          .then(async (response) => await allMusicCategory(response, types))
+          .then(
+            async (response) => await allMusicCategory(response, types, type)
+          )
           .catch((err) => console.log(err));
       });
     } else {
@@ -182,7 +168,7 @@ listCategory.forEach((e) => {
         },
         body: data,
       })
-        .then(async (response) => await clickCategory(response, type))
+        .then(async (response) => await clickCategory(response, types, type))
         .catch((err) => console.log(err));
     }
   });
