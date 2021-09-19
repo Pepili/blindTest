@@ -18,6 +18,7 @@ const alertMessage = document.getElementById("alertMessage");
 const response = document.getElementById("response");
 // les données du sessionStorage
 const listMusic = atob(sessionStorage.getItem("musics"));
+console.log(listMusic);
 const arrayList = JSON.parse(listMusic);
 const lengthMusic = arrayList.length;
 const typeLocal = sessionStorage.getItem("type");
@@ -25,6 +26,7 @@ const usernameLocal = sessionStorage.getItem("pseudo");
 
 // récupération des données par rapport à l'index
 let index = arrayList.findIndex((i) => i);
+console.log(arrayList);
 let nameMusic;
 let imageMusic;
 let urlMusicList;

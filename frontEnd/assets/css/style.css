@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "crooked";
   src: url("/assets/css/fonts/Crooked.ttf") format("truetype");
@@ -201,13 +202,6 @@ body {
 .sectionCategory #startMusic .elementStart {
   text-align: center;
 }
-.sectionCategory #startMusic #titleCategoryMusic {
-  text-transform: uppercase;
-  letter-spacing: 1.7px;
-  font-size: 24px;
-  color: #4fd1c5;
-  margin-bottom: 40px;
-}
 .sectionCategory #startMusic label {
   font-size: 20px;
 }
@@ -248,54 +242,6 @@ body {
   cursor: pointer;
   border: 5px solid #4fd1c5;
   border-radius: 4px;
-}
-.sectionCategory #startMusic .startButtonMusic {
-  text-decoration: none;
-  text-align: center;
-  font-family: "caviar";
-  margin-top: 60px;
-  margin-bottom: 30px;
-  min-width: 200px;
-  min-height: 50px;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1.3px;
-  font-weight: 700;
-  color: #313133;
-  background: #4fd1c5;
-  background: linear-gradient(90deg, #81e6d9 0%, #4fd1c5 100%);
-  border: none;
-  border-radius: 1000px;
-  box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
-  transition: all 0.3s ease-in-out 0s;
-  cursor: pointer;
-  outline: none;
-  position: relative;
-  padding: 10px;
-}
-.sectionCategory #startMusic .startButtonMusic:before {
-  content: "";
-  border-radius: 1000px;
-  min-width: calc(200px + 12px);
-  min-height: calc(50px + 12px);
-  border: 6px solid #00ffcb;
-  box-shadow: 0 0 60px rgba(0, 255, 203, 0.64);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: all 0.3s ease-in-out 0s;
-}
-.sectionCategory #startMusic .startButtonMusic:hover, .sectionCategory #startMusic .startButtonMusic:focus {
-  color: #313133;
-  transform: translateY(-6px);
-}
-.sectionCategory #startMusic .startButtonMusic:hover::before, .sectionCategory #startMusic .startButtonMusic:focus::before {
-  opacity: 1;
-}
-.sectionCategory #startMusic .startButtonMusic:hover::after, .sectionCategory #startMusic .startButtonMusic:focus::after {
-  display: none;
 }
 .sectionCategory .scriptCategory {
   border: 1px solid #f7ff3c;
@@ -382,11 +328,194 @@ body {
   background-color: #4fd1c5;
 }
 
+.startButtonMusic {
+  text-decoration: none;
+  text-align: center;
+  font-family: "caviar";
+  margin-top: 60px;
+  margin-bottom: 30px;
+  min-width: 200px;
+  min-height: 50px;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4fd1c5;
+  background: linear-gradient(90deg, #81e6d9 0%, #4fd1c5 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+}
+.startButtonMusic:before {
+  content: "";
+  border-radius: 1000px;
+  min-width: calc(200px + 12px);
+  min-height: calc(50px + 12px);
+  border: 6px solid #00ffcb;
+  box-shadow: 0 0 60px rgba(0, 255, 203, 0.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out 0s;
+}
+.startButtonMusic:hover, .startButtonMusic:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+.startButtonMusic:hover::before, .startButtonMusic:focus::before {
+  opacity: 1;
+}
+.startButtonMusic:hover::after, .startButtonMusic:focus::after {
+  display: none;
+}
+
+.titleCategoryMusic {
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+  font-size: 24px;
+  color: #4fd1c5;
+  margin-bottom: 40px;
+}
+
 @keyframes moveGradient {
   50% {
     background-position: 100% 50%;
   }
 }
+.checkDiv {
+  display: none;
+  border: 1px solid #f7ff3c;
+  padding: 20px;
+  box-shadow: 0 5px 10px rgba(9, 0, 0, 0.5);
+}
+.checkDiv #crossCheck {
+  color: #f7ff3c;
+  font-size: 20px;
+  cursor: pointer;
+}
+.checkDiv .titleCheck {
+  text-align: center;
+}
+.checkDiv .titleCheck .legendCheck {
+  font-size: 18px;
+  color: #f7ff3c;
+}
+@media all and (min-width: 675px) {
+  .checkDiv .titleCheck .legendCheck {
+    font-size: 20px;
+  }
+}
+
+.checkType {
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 65px;
+  grid-column-gap: 2%;
+  /* Preparer le label */
+  /* Aspect de la case */
+  /* Aspect de la coche */
+  /* Aspect non cochée */
+  /* Aspect cochée */
+  /* Disabled checkbox */
+  /* Disabled checked */
+  /* Accessibility focus */
+}
+@media all and (min-width: 500px) {
+  .checkType {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media all and (min-width: 700px) {
+  .checkType {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.checkType p {
+  position: relative;
+  display: flex;
+}
+.checkType [type=checkbox]:not(:checked),
+.checkType [type=checkbox]:checked {
+  /* Cache la checkbox sans
+  la rendre invisible aux
+  lecteurs d'écran */
+  position: absolute;
+  left: 0;
+  opacity: 0.01;
+}
+.checkType [type=checkbox]:not(:checked) + label,
+.checkType [type=checkbox]:checked + label {
+  position: relative;
+  /* permet de positionner la checkbox */
+  padding-left: 2.3em;
+  /* place pour la box */
+  font-size: 1.05em;
+  line-height: 1.7;
+  cursor: pointer;
+}
+.checkType [type=checkbox]:not(:checked) + label::before,
+.checkType [type=checkbox]:checked + label::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 4px;
+  width: 1em;
+  height: 1em;
+  border: 2px solid #4fd1c5;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 0.2em;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 rgba(201, 70, 228, 0.2);
+  transition: all 0.275s;
+}
+.checkType [type=checkbox]:not(:checked) + label::after,
+.checkType [type=checkbox]:checked + label::after {
+  content: "✕";
+  speak: never;
+  /* Pour être sûr que le lecteur d'écran ne lira pas "fois" */
+  position: absolute;
+  top: 0.56em;
+  left: 0.55em;
+  font-size: 1.34em;
+  color: #f7ff3c;
+  line-height: 0;
+  transition: all 0.2s;
+  /* Petite transition */
+  font-weight: bold;
+}
+.checkType [type=checkbox]:not(:checked) + label::after {
+  opacity: 0;
+  transform: scale(0) rotate(45deg);
+}
+.checkType [type=checkbox]:checked + label::after {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+}
+.checkType [type=checkbox]:disabled:not(:checked) + label::before,
+.checkType [type=checkbox]:disabled:checked + label::before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #e9e9e9;
+}
+.checkType [type=checkbox]:disabled:checked + label::after {
+  color: #777;
+}
+.checkType [type=checkbox]:disabled + label {
+  color: #aaa;
+}
+.checkType [type=checkbox]:checked:focus + label::before,
+.checkType [type=checkbox]:not(:checked):focus + label::before {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 6px rgba(79, 209, 196, 0.24);
+}
+
 @media all and (max-width: 900px) {
   /* .page {
     visibility: hidden;
