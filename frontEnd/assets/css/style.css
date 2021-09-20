@@ -413,6 +413,12 @@ body {
     font-size: 20px;
   }
 }
+.checkDiv #alertMessageCheck {
+  margin-top: 10px;
+}
+.checkDiv #categoryButtonMusic {
+  margin-top: 20px;
+}
 
 .checkType {
   display: grid;

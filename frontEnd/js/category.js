@@ -8,12 +8,15 @@ const crossCheck = document.getElementById("crossCheck");
 const myRange = document.getElementById("myRange");
 const cross = document.getElementById("cross");
 const categoryButtonMusic = document.getElementById("categoryButtonMusic");
-let numberMusicArray = [];
+const types = [];
 sessionStorage.removeItem("score");
-sessionStorage.removeItem("scores");
 sessionStorage.removeItem("type");
 sessionStorage.removeItem("musics");
-
+document.getElementById("alertMessageCheck").style.display = "none";
+if (!sessionStorage.getItem("pseudo")) {
+  window.location = "/index.html";
+}
+const inputCheck = document.querySelectorAll("#checkType > p > input");
 // permet de faire apparaitre la valeur sélectionnée en cours sur le range
 function rangeSlide(value) {
   rangeValue.innerHTML = value;
@@ -97,8 +100,13 @@ function allCategory(type) {
   crossCheck.addEventListener("click", () => {
     checkDiv.style.display = "none";
     scriptCategory.style.display = "block";
+    inputCheck.forEach((a) => {
+      if ((a.checked = true)) {
+        a.checked = false;
+      }
+    });
+    types.splice(0, types.length);
     myRange.value = "10";
-    // AJOUTER DECOCHAGE
     rangeValue.innerHTML = myRange.value;
     audioButton.play();
   });
@@ -133,30 +141,42 @@ listCategory.forEach((e) => {
   e.addEventListener("click", () => {
     const type = e.getAttribute("type");
     let data;
-    const types = [];
     // On execute la requete en fonction du type
     if (type == "Toute Catégories") {
       allCategory(type);
-      const inputCheck = document.querySelectorAll("#checkType > p > input");
       inputCheck.forEach((a) => {
         a.addEventListener("click", () => {
-          types.push(a.value);
+          document.getElementById("alertMessageCheck").style.display = "none";
+          if (a.checked == true) {
+            types.push(a.value);
+          } else {
+            const indexCheck = types.indexOf(a.value);
+            if (indexCheck > -1) {
+              types.splice(indexCheck, 1);
+            } else {
+              console.log("il n'y a rien qui correspond dans le tableau");
+            }
+          }
         });
       });
       categoryButtonMusic.addEventListener("click", () => {
-        data = JSON.stringify({ types });
-        fetch("http://localhost:3000/api/musics/", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "content-type": "application/json",
-          },
-          body: data,
-        })
-          .then(
-            async (response) => await allMusicCategory(response, types, type)
-          )
-          .catch((err) => console.log(err));
+        if (types.length < 2) {
+          document.getElementById("alertMessageCheck").style.display = "block";
+        } else {
+          data = JSON.stringify({ types });
+          fetch("http://localhost:3000/api/musics/", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "content-type": "application/json",
+            },
+            body: data,
+          })
+            .then(
+              async (response) => await allMusicCategory(response, types, type)
+            )
+            .catch((err) => console.log(err));
+        }
       });
     } else {
       data = JSON.stringify({ types: [type] });

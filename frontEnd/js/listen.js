@@ -22,7 +22,10 @@ const arrayList = JSON.parse(listMusic);
 const lengthMusic = arrayList.length;
 const typeLocal = sessionStorage.getItem("type");
 const usernameLocal = sessionStorage.getItem("pseudo");
-
+sessionStorage.setItem("score", "0");
+if (!sessionStorage.getItem("pseudo")) {
+  window.location = "/index.html";
+}
 // récupération des données par rapport à l'index
 let index = arrayList.findIndex((i) => i);
 let nameMusic;
@@ -100,13 +103,9 @@ function clickResponse(e) {
     musicBlind.pause();
     clearInterval(timeId);
     let scoreAddsessionStorage = JSON.parse(sessionStorage.getItem("score"));
-    if (scoreAddsessionStorage) {
-      const numberScore = Number(scoreAddsessionStorage);
-      const resultatScore = numberScore + 1;
-      sessionStorage.setItem("score", JSON.stringify(resultatScore));
-    } else {
-      sessionStorage.setItem("score", "1");
-    }
+    const numberScore = Number(scoreAddsessionStorage);
+    const resultatScore = numberScore + 1;
+    sessionStorage.setItem("score", JSON.stringify(resultatScore));
     musicBlind.currentTime = 0;
     resultat.style.display = "block";
     resultatMessage.innerHTML = `
@@ -196,5 +195,3 @@ pass.addEventListener("click", () => {
   musicBlind.pause();
   stopTime();
 });
-
-sessionStorage.removeItem("score");
