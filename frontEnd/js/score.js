@@ -6,7 +6,9 @@ const lengthMusic = arrayList.length;
 // récupération des éléments du sessionStorage
 const type = sessionStorage.getItem("type");
 const scoreLocal = sessionStorage.getItem("score");
-
+if (!sessionStorage.getItem("pseudo")) {
+  window.location = "/index.html";
+}
 // récupérer élément du DOM
 const titleTable = document.getElementById("titleTable");
 const pseudo = document.getElementById("pseudo");

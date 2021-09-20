@@ -1,7 +1,7 @@
 const Music = require("../models/music");
 
 exports.searchMusic = (req, res) => {
-  const { name, type, kind, random } = req.body;
+  const { name, types, kind, random } = req.body;
   const match = {};
   const pipeline = [];
 
@@ -9,8 +9,8 @@ exports.searchMusic = (req, res) => {
     match.name = name;
   }
 
-  if (type) {
-    match.type = type;
+  if (types && types.length > 0) {
+    match.type = { $in: types };
   }
 
   if (kind) {

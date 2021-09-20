@@ -7,12 +7,16 @@ const rangeValue = document.getElementById("rangeValue");
 const crossCheck = document.getElementById("crossCheck");
 const myRange = document.getElementById("myRange");
 const cross = document.getElementById("cross");
-let numberMusicArray = [];
+const categoryButtonMusic = document.getElementById("categoryButtonMusic");
+const types = [];
 sessionStorage.removeItem("score");
-sessionStorage.removeItem("scores");
 sessionStorage.removeItem("type");
 sessionStorage.removeItem("musics");
-
+document.getElementById("alertMessageCheck").style.display = "none";
+if (!sessionStorage.getItem("pseudo")) {
+  window.location = "/index.html";
+}
+const inputCheck = document.querySelectorAll("#checkType > p > input");
 // permet de faire apparaitre la valeur sélectionnée en cours sur le range
 function rangeSlide(value) {
   rangeValue.innerHTML = value;
@@ -20,7 +24,7 @@ function rangeSlide(value) {
 
 /* Au click sur le bouton C'est parti, on fait une req post pour récuperer 
      des musiques en fct de la catégorie et au nombre sélectionné par l'utilisateur */
-function musicCategory(types) {
+function musicCategory(types, type) {
   startButtonMusic.addEventListener("click", () => {
     audioButton.play();
     // On récupère le nombre du range
@@ -28,13 +32,13 @@ function musicCategory(types) {
     let data;
     const type = types.length == 1 ? types[0] : "Toute catégories";
     sessionStorage.setItem("type", type);
-    if (types.length > 1) {
+    if (type == "Toute Catégories") {
       data = JSON.stringify({
         random: parseInt(valueRange),
         types,
       });
     } else {
-      data = JSON.stringify({ random: parseInt(valueRange), types });
+      data = JSON.stringify({ random: parseInt(valueRange), types: [type] });
     }
     // On fait la requete pour récupérer les musiques
     fetch("http://localhost:3000/api/musics/", {
@@ -67,7 +71,7 @@ async function rangeMusic(response, type) {
 }
 
 // On fait apparaitre le block choix du nb de musique
-async function clickCategory(response, type) {
+async function clickCategory(response, types, type) {
   rangeMusic(response, type);
   // On fait apparaitre le block startMusic et on fait disparaitre le block scriptCategory
   startMusic.style.display = "block";
@@ -82,7 +86,49 @@ async function clickCategory(response, type) {
     rangeValue.innerHTML = myRange.value;
     audioButton.play();
   });
-  musicCategory(type);
+  musicCategory(types, type);
+}
+
+// On fait apparaitre le block choix des catégories
+function allCategory(type) {
+  checkDiv.style.display = "block";
+  scriptCategory.style.display = "none";
+
+  // On ajoute dans titre le nom du type du li
+  document.getElementById("titleCategoryMusicCheck").innerHTML = type;
+
+  // On inverse les effets des styles précédents au click sur la croix
+  crossCheck.addEventListener("click", () => {
+    checkDiv.style.display = "none";
+    scriptCategory.style.display = "block";
+    inputCheck.forEach((a) => {
+      if ((a.checked = true)) {
+        a.checked = false;
+      }
+    });
+    types.splice(0, types.length);
+    myRange.value = "10";
+    rangeValue.innerHTML = myRange.value;
+    audioButton.play();
+  });
+}
+
+// On calcule le total des musiques dispos des catégories choisies
+async function allMusicCategory(response, types, type) {
+  const responseMusic = await response.json();
+  myRange.setAttribute("max", responseMusic.length);
+  // On fait apparaitre le block startMusic et on fait disparaitre le block scriptCategory
+  startMusic.style.display = "block";
+  checkDiv.style.display = "none";
+  // On ajoute dans titre le nom du type du li
+  document.getElementById("titleCategoryMusicCheck").innerHTML = type;
+  // On inverse les effets des styles précédents au click sur la croix
+  cross.addEventListener("click", () => {
+    checkDiv.style.display = "block";
+    startMusic.style.display = "none";
+    audioButton.play();
+  });
+  musicCategory(types, type);
 }
 
 // On fait apparaitre le block choix des catégories
@@ -150,29 +196,39 @@ listCategory.forEach((e) => {
     // On execute la requete en fonction du type
     if (type == "Toute Catégories") {
       allCategory(type);
-      // recuperer value de tout les opacity 1
-      const categoryButtonMusic = document.getElementById(
-        "categoryButtonMusic"
-      );
-      const types = [];
-      const inputCheck = document.querySelectorAll("#checkType > p > input");
       inputCheck.forEach((a) => {
         a.addEventListener("click", () => {
-          types.push(a.value);
+          document.getElementById("alertMessageCheck").style.display = "none";
+          if (a.checked == true) {
+            types.push(a.value);
+          } else {
+            const indexCheck = types.indexOf(a.value);
+            if (indexCheck > -1) {
+              types.splice(indexCheck, 1);
+            } else {
+              console.log("il n'y a rien qui correspond dans le tableau");
+            }
+          }
         });
       });
       categoryButtonMusic.addEventListener("click", () => {
-        data = JSON.stringify({ types });
-        fetch("http://localhost:3000/api/musics/", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "content-type": "application/json",
-          },
-          body: data,
-        })
-          .then(async (response) => await allMusicCategory(response, types))
-          .catch((err) => console.log(err));
+        if (types.length < 2) {
+          document.getElementById("alertMessageCheck").style.display = "block";
+        } else {
+          data = JSON.stringify({ types });
+          fetch("http://localhost:3000/api/musics/", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "content-type": "application/json",
+            },
+            body: data,
+          })
+            .then(
+              async (response) => await allMusicCategory(response, types, type)
+            )
+            .catch((err) => console.log(err));
+        }
       });
     } else {
       data = JSON.stringify({ types: [type] });
@@ -184,7 +240,7 @@ listCategory.forEach((e) => {
         },
         body: data,
       })
-        .then(async (response) => await clickCategory(response, type))
+        .then(async (response) => await clickCategory(response, types, type))
         .catch((err) => console.log(err));
     }
   });
