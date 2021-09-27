@@ -12,7 +12,6 @@ const cross = document.getElementById("cross");
 const categoryButtonMusic = document.getElementById("categoryButtonMusic");
 const categoryButtonMusic2 = document.getElementById("categoryButtonMusic2");
 const types = [];
-const local = "http://localhost:3000";
 const kinds = [];
 sessionStorage.removeItem("score");
 sessionStorage.removeItem("type");
@@ -51,7 +50,7 @@ function musicCategory(types, type, kinds) {
       data = JSON.stringify({ random: parseInt(valueRange), types: [type] });
     }
     // On fait la requete pour récupérer les musiques
-    fetch(local + "/api/musics/", {
+    fetch("http://localhost:3000/api/musics/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -180,57 +179,6 @@ async function allMusicCategory(response, types, type) {
   musicCategory(types, type);
 }
 
-// On fait apparaitre le block choix des catégories
-function allCategory(type) {
-  checkDiv.style.display = "block";
-  scriptCategory.style.display = "none";
-
-  // On ajoute dans titre le nom du type du li
-  document.getElementById("titleCategoryMusicCheck").innerHTML = type;
-
-  // On inverse les effets des styles précédents au click sur la croix
-  crossCheck.addEventListener("click", () => {
-    checkDiv.style.display = "none";
-    scriptCategory.style.display = "block";
-    myRange.value = "10";
-    rangeValue.innerHTML = myRange.value;
-    audioButton.play();
-  });
-}
-
-// On envoie la req vers la db pour récupérer les musiques des catégories choisies
-function allCategoryMusics(typeLabel) {
-  data = JSON.stringify({ random: parseInt(valueRange), type: typeLabel });
-  // On fait la requete pour récupérer les musiques
-  fetch(local + "/api/musics/", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "content-type": "application/json",
-    },
-    body: data,
-  });
-}
-
-// On calcule le total des musiques dispos des catégories choisies
-async function allMusicCategory(response, types) {
-  const responseMusic = await response.json();
-  myRange.setAttribute("max", responseMusic.length);
-  // On fait apparaitre le block startMusic et on fait disparaitre le block scriptCategory
-  startMusic.style.display = "block";
-  checkDiv.style.display = "none";
-  // On ajoute dans titre le nom du type du li
-  document.getElementById("titleCategoryMusicCheck").innerHTML =
-    types.length == 1 ? types[0] : "Toute catégories";
-  // On inverse les effets des styles précédents au click sur la croix
-  cross.addEventListener("click", () => {
-    checkDiv.style.display = "block";
-    startMusic.style.display = "none";
-    audioButton.play();
-  });
-  musicCategory(types);
-}
-
 /*  On ajoute un évènement au click sur chaque li afin de connaitre le nombre de musique disponible 
     en fonction du type du li */
 const listCategory = document.querySelectorAll("#listCategory > li");
@@ -265,7 +213,7 @@ listCategory.forEach((e) => {
           document.getElementById("alertMessageCheck").style.display = "block";
         } else {
           data = JSON.stringify({ types });
-          fetch(local + "/api/musics/", {
+          fetch("http://localhost:3000/api/musics/", {
             method: "POST",
             headers: {
               Accept: "application/json",
@@ -320,7 +268,7 @@ listCategory.forEach((e) => {
       });
     } else {
       data = JSON.stringify({ types: [type] });
-      fetch(local + "/api/musics/", {
+      fetch("http://localhost:3000/api/musics/", {
         method: "POST",
         headers: {
           Accept: "application/json",
