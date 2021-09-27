@@ -5,10 +5,14 @@ const startMusic = document.getElementById("startMusic");
 const checkDiv = document.getElementById("checkDiv");
 const rangeValue = document.getElementById("rangeValue");
 const crossCheck = document.getElementById("crossCheck");
+const crossCheck2 = document.getElementById("crossCheck2");
+const checkDiv2 = document.getElementById("checkDiv2");
 const myRange = document.getElementById("myRange");
 const cross = document.getElementById("cross");
 const categoryButtonMusic = document.getElementById("categoryButtonMusic");
+const categoryButtonMusic2 = document.getElementById("categoryButtonMusic2");
 const types = [];
+const kinds = [];
 sessionStorage.removeItem("score");
 sessionStorage.removeItem("type");
 sessionStorage.removeItem("musics");
@@ -17,6 +21,7 @@ if (!sessionStorage.getItem("pseudo")) {
   window.location = "/index.html";
 }
 const inputCheck = document.querySelectorAll("#checkType > p > input");
+const inputCheck2 = document.querySelectorAll("#checkType2 > p > input");
 // permet de faire apparaitre la valeur sélectionnée en cours sur le range
 function rangeSlide(value) {
   rangeValue.innerHTML = value;
@@ -24,7 +29,7 @@ function rangeSlide(value) {
 
 /* Au click sur le bouton C'est parti, on fait une req post pour récuperer 
      des musiques en fct de la catégorie et au nombre sélectionné par l'utilisateur */
-function musicCategory(types, type) {
+function musicCategory(types, type, kinds) {
   startButtonMusic.addEventListener("click", () => {
     audioButton.play();
     // On récupère le nombre du range
@@ -35,6 +40,11 @@ function musicCategory(types, type) {
       data = JSON.stringify({
         random: parseInt(valueRange),
         types,
+      });
+    } else if (type == "Mangas") {
+      data = JSON.stringify({
+        random: parseInt(valueRange),
+        kinds,
       });
     } else {
       data = JSON.stringify({ random: parseInt(valueRange), types: [type] });
@@ -112,6 +122,45 @@ function allCategory(type) {
   });
 }
 
+// On fait apparaitre le block choix du type de mangas
+function allMangas(type) {
+  checkDiv2.style.display = "block";
+  scriptCategory.style.display = "none";
+  document.getElementById("titleCategoryMusicCheck2").innerHTML = type;
+  // On inverse les effets des styles précédents au click sur la croix
+  crossCheck2.addEventListener("click", () => {
+    checkDiv2.style.display = "none";
+    scriptCategory.style.display = "block";
+    inputCheck2.forEach((a) => {
+      if ((a.checked = true)) {
+        a.checked = false;
+      }
+    });
+    kinds.splice(0, kinds.length);
+    myRange.value = "10";
+    rangeValue.innerHTML = myRange.value;
+    audioButton.play();
+  });
+}
+
+// On calcule le total des musiques des types choisies
+async function allMusicMangas(response, types, type, kinds) {
+  const responseMusic = await response.json();
+  myRange.setAttribute("max", responseMusic.length);
+  // On fait apparaitre le block startMusic et on fait disparaitre le block scriptCategory
+  startMusic.style.display = "block";
+  checkDiv2.style.display = "none";
+  // On ajoute dans titre le nom du type du li
+  document.getElementById("titleCategoryMusicCheck2").innerHTML = type;
+  // On inverse les effets des styles précédents au click sur la croix
+  cross.addEventListener("click", () => {
+    checkDiv2.style.display = "block";
+    startMusic.style.display = "none";
+    audioButton.play();
+  });
+  musicCategory(types, type, kinds);
+}
+
 // On calcule le total des musiques dispos des catégories choisies
 async function allMusicCategory(response, types, type) {
   const responseMusic = await response.json();
@@ -174,6 +223,45 @@ listCategory.forEach((e) => {
           })
             .then(
               async (response) => await allMusicCategory(response, types, type)
+            )
+            .catch((err) => console.log(err));
+        }
+      });
+    } else if (type == "Mangas") {
+      allMangas(type);
+      inputCheck2.forEach((a) => {
+        a.addEventListener("click", () => {
+          document.getElementById("alertMessageCheck2").style.display = "none";
+          if (a.checked == true) {
+            kinds.push(a.value);
+          } else {
+            const indexCheck = kinds.indexOf(a.value);
+            if (indexCheck > -1) {
+              kinds.splice(indexCheck, 1);
+            } else {
+              console.log("il n'y a rien qui correspond dans le tableau");
+            }
+          }
+        });
+      });
+      categoryButtonMusic2.addEventListener("click", () => {
+        if (kinds.length == 0) {
+          document.getElementById("alertMessageCheck2").style.display = "block";
+        } else {
+          data = JSON.stringify({
+            kinds,
+          });
+          fetch("http://localhost:3000/api/musics/", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "content-type": "application/json",
+            },
+            body: data,
+          })
+            .then(
+              async (response) =>
+                await allMusicMangas(response, types, type, kinds)
             )
             .catch((err) => console.log(err));
         }

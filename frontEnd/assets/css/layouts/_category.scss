@@ -244,7 +244,8 @@
   border: 1px solid $color-secondary;
   padding: 20px;
   box-shadow: 0 5px 10px rgba(9, 0, 0, 0.5);
-  #crossCheck {
+  #crossCheck,
+  #crossCheck2 {
     color: $color-secondary;
     font-size: 20px;
     cursor: pointer;
@@ -259,11 +260,19 @@
       color: $color-secondary;
     }
   }
-  #alertMessageCheck {
+  #alertMessageCheck,
+  #alertMessageCheck2 {
     margin-top: 10px;
   }
-  #categoryButtonMusic {
+  #categoryButtonMusic,
+  #categoryButtonMusic2 {
     margin-top: 20px;
+  }
+}
+#checkType2 {
+  @media all and (min-width: 700px) {
+    grid-template-columns: repeat(2, 1fr) !important;
+    justify-items: center;
   }
 }
 .checkType {
