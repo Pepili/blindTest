@@ -397,7 +397,8 @@ body {
   padding: 20px;
   box-shadow: 0 5px 10px rgba(9, 0, 0, 0.5);
 }
-.checkDiv #crossCheck {
+.checkDiv #crossCheck,
+.checkDiv #crossCheck2 {
   color: #f7ff3c;
   font-size: 20px;
   cursor: pointer;
@@ -414,11 +415,20 @@ body {
     font-size: 20px;
   }
 }
-.checkDiv #alertMessageCheck {
+.checkDiv #alertMessageCheck,
+.checkDiv #alertMessageCheck2 {
   margin-top: 10px;
 }
-.checkDiv #categoryButtonMusic {
+.checkDiv #categoryButtonMusic,
+.checkDiv #categoryButtonMusic2 {
   margin-top: 20px;
+}
+
+@media all and (min-width: 700px) {
+  #checkType2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    justify-items: center;
+  }
 }
 
 .checkType {
