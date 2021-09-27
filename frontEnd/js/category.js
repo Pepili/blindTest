@@ -9,6 +9,7 @@ const myRange = document.getElementById("myRange");
 const cross = document.getElementById("cross");
 const categoryButtonMusic = document.getElementById("categoryButtonMusic");
 const types = [];
+const local = "http://localhost:3000";
 sessionStorage.removeItem("score");
 sessionStorage.removeItem("type");
 sessionStorage.removeItem("musics");
@@ -41,7 +42,7 @@ function musicCategory(types, type) {
       data = JSON.stringify({ random: parseInt(valueRange), types: [type] });
     }
     // On fait la requete pour récupérer les musiques
-    fetch("http://localhost:3000/api/musics/", {
+    fetch(local + "/api/musics/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -153,7 +154,7 @@ function allCategory(type) {
 function allCategoryMusics(typeLabel) {
   data = JSON.stringify({ random: parseInt(valueRange), type: typeLabel });
   // On fait la requete pour récupérer les musiques
-  fetch("http://localhost:3000/api/musics/", {
+  fetch(local + "/api/musics/", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -216,7 +217,7 @@ listCategory.forEach((e) => {
           document.getElementById("alertMessageCheck").style.display = "block";
         } else {
           data = JSON.stringify({ types });
-          fetch("http://localhost:3000/api/musics/", {
+          fetch(local + "/api/musics/", {
             method: "POST",
             headers: {
               Accept: "application/json",
@@ -232,7 +233,7 @@ listCategory.forEach((e) => {
       });
     } else {
       data = JSON.stringify({ types: [type] });
-      fetch("http://localhost:3000/api/musics/", {
+      fetch(local + "/api/musics/", {
         method: "POST",
         headers: {
           Accept: "application/json",

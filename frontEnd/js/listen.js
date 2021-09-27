@@ -10,6 +10,7 @@ const musicBlind = document.getElementById("musicBlind");
 const time = document.getElementById("time");
 const score = document.getElementById("score");
 const nextButton = document.getElementById("nextButton");
+const local = "http://localhost:3000";
 const audioButton = document.getElementById("audioButton");
 const regexResponse =
   /^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ' -]{2,50}$/;
@@ -165,7 +166,7 @@ nextButton.addEventListener("click", () => {
 function recordScore(username, type, number, score) {
   const data = JSON.stringify({ username, type, number, score });
   // On ajoute à la db le score de l'user
-  fetch("http://localhost:3000/api/scores/", {
+  fetch(local + "/api/scores/", {
     method: "POST",
     headers: {
       "content-type": "application/json",

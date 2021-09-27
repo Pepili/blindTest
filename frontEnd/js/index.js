@@ -4,11 +4,11 @@ const buttonReady = document.getElementById("buttonReady");
 const audioButton = document.getElementById("audioButton");
 const alertUser = document.getElementById("alertUser");
 const pseudo = document.getElementById("pseudo");
-
+const local = "http://localhost:3000";
 // On vérifie si l'user existe déjà dans la db
 function signupUser(username) {
   const data = JSON.stringify({ username });
-  fetch("http://localhost:3000/api/names/signup", {
+  fetch(local + "/api/names/signup", {
     method: "POST",
     headers: {
       "content-type": "application/json",
