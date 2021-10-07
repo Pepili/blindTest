@@ -46,13 +46,13 @@ if(isset($_POST['mailform']))
       content="Kelzic est un blind test sur les films, séries, jeux-vidéos, dessin-animés et émissions télé
       à jouer seul ou en équipe!"
     />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/fontawesome/css/all.min.css" />
     <title>KelZic</title>
   </head>
   <body>
     <header class="headerWelcome">
-      <img class="logoGif" id="logoSupport"alt="logo" src="../images/logo4.png" />
+      <img class="logoGif" id="logoSupport"alt="logo" src="/assets/images/logo4.png" />
       <h1 class="titleWelcome" id="titleSupport">KelZic</h1>
     </header>
     <div class="textSupport">
