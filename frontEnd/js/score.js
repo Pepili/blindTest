@@ -2,7 +2,7 @@
 const listMusic = atob(sessionStorage.getItem("musics"));
 const arrayList = JSON.parse(listMusic);
 const lengthMusic = arrayList.length;
-const local = "http://localhost:3000";
+const serverUrl = "51.68.45.86";
 // récupération des éléments du sessionStorage
 const type = sessionStorage.getItem("type");
 const scoreLocal = sessionStorage.getItem("score");
@@ -24,7 +24,7 @@ titleTable.innerHTML = `Les scores des autres Kelziqueurs avec ${lengthMusic} mu
 function scoreDb(number, type) {
   const data = JSON.stringify({ number, type });
 
-  fetch(local + "/api/scores/recover", {
+  fetch("http://" + serverUrl + "/api/scores/recover", {
     method: "POST",
     headers: {
       Accept: "application/json",
