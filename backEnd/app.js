@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-app.use(cors({origin: 'http://51.68.45.86:3000'}));
+app.use(cors({origin: '*'}));
 // indique à express de gérer la ressource images de manière statique à chaque requête vers /images
 app.use("/images", express.static(path.join(__dirname, "images")));
 // indique à express de gérer la ressource music de manière statique à chaque requête vers /musics
