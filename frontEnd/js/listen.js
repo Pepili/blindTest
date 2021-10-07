@@ -10,7 +10,7 @@ const musicBlind = document.getElementById("musicBlind");
 const time = document.getElementById("time");
 const score = document.getElementById("score");
 const nextButton = document.getElementById("nextButton");
-const serverUrl = "51.68.45.86";
+const serverUrl = "kelzic.com";
 const audioButton = document.getElementById("audioButton");
 const regexResponse =
   /^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ' -]{2,50}$/;

@@ -4,7 +4,7 @@ const buttonReady = document.getElementById("buttonReady");
 const audioButton = document.getElementById("audioButton");
 const alertUser = document.getElementById("alertUser");
 const pseudo = document.getElementById("pseudo");
-const serverUrl = "51.68.45.86";
+const serverUrl = "kelzic.com";
 // On vérifie si l'user existe déjà dans la db
 function signupUser(username) {
   const data = JSON.stringify({ username });

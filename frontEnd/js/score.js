@@ -2,7 +2,7 @@
 const listMusic = atob(sessionStorage.getItem("musics"));
 const arrayList = JSON.parse(listMusic);
 const lengthMusic = arrayList.length;
-const serverUrl = "51.68.45.86";
+const serverUrl = "kelzic.com";
 // récupération des éléments du sessionStorage
 const type = sessionStorage.getItem("type");
 const scoreLocal = sessionStorage.getItem("score");
