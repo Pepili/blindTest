@@ -533,111 +533,111 @@ body {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 6px rgba(79, 209, 196, 0.24);
 }
 
-@media all and (max-width: 900px) {
-  /* .page {
+.page {
+  visibility: hidden;
+  opacity: 0;
+  animation: showPage 0.6s linear 3s forwards;
+}
+
+@keyframes showPage {
+  0% {
     visibility: hidden;
     opacity: 0;
-    animation: showPage 0.6s linear 3s forwards;
   }
-  @keyframes showPage {
-    0% {
-      visibility: hidden;
-      opacity: 0;
-    }
-    1% {
-      visibility: visible;
-      opacity: 0;
-    }
-    100% {
-      visibility: visible;
-      opacity: 1;
-    }
+  1% {
+    visibility: visible;
+    opacity: 0;
   }
-  .patienter {
-    z-index: 1;
-    position: relative;
-    -webkit-animation: hideloader 0.6s linear 3s forwards;
-    animation: hideloader 0.6s linear 3s forwards;
-    p {
-      top: -360px;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      width: 270px;
-      height: 50px;
-      position: fixed;
-      color: $color-secondary;
-      font-size: 30px;
-      margin: auto;
-    }
+  100% {
+    visibility: visible;
+    opacity: 1;
   }
-  .loader {
-    height: 115px;
-    width: 115px;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border: 8px solid transparent;
-    border-top-color: darken($color: $color-tertiary, $amount: 10%);
-    border-bottom-color: $color-tertiary;
-    border-radius: 50%;
-    margin: auto;
-    position: fixed;
-    z-index: 1;
-    -webkit-animation: spin 3s linear 2, hideloader 0.6s linear 3s forwards;
-    animation: spin 3s linear 2, hideloader 0.6s linear 3s forwards;
-  }
-  .loader::before {
-    content: "";
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    bottom: 15px;
-    left: 15px;
-    border: 8px solid transparent;
-    border-left-color: $color-primary;
-    border-right-color: $color-secondary;
-    border-radius: 50%;
-    -webkit-animation: spin 1.5s ease-in-out 2;
-    animation: spin 1.5s ease-in-out 2;
-  }
+}
+.patienter {
+  z-index: 1;
+  position: relative;
+  -webkit-animation: hideloader 0.6s linear 3s forwards;
+  animation: hideloader 0.6s linear 3s forwards;
+}
+.patienter p {
+  top: -360px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 270px;
+  height: 50px;
+  position: fixed;
+  color: #f7ff3c;
+  font-size: 30px;
+  margin: auto;
+}
 
-  @-webkit-keyframes spin {
-    from {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    to {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
+.loader {
+  height: 115px;
+  width: 115px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 8px solid transparent;
+  border-top-color: #ff0beb;
+  border-bottom-color: #ff3eef;
+  border-radius: 50%;
+  margin: auto;
+  position: fixed;
+  z-index: 1;
+  -webkit-animation: spin 3s linear 2, hideloader 0.6s linear 3s forwards;
+  animation: spin 3s linear 2, hideloader 0.6s linear 3s forwards;
+}
 
-  @keyframes spin {
-    from {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    to {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
+.loader::before {
+  content: "";
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  border: 8px solid transparent;
+  border-left-color: #4fd1c5;
+  border-right-color: #f7ff3c;
+  border-radius: 50%;
+  -webkit-animation: spin 1.5s ease-in-out 2;
+  animation: spin 1.5s ease-in-out 2;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
-  @keyframes hideloader {
-    0% {
-      visibility: visible;
-      opacity: 1;
-    }
-    99% {
-      visibility: visible;
-      opacity: 0;
-    }
-    100% {
-      visibility: hidden;
-      opacity: 0;
-    }
-  } */
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes hideloader {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+  99% {
+    visibility: visible;
+    opacity: 0;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
 }
 .listen {
   text-align: center;
@@ -949,6 +949,88 @@ body {
 }
 .scoreSection #returnButton {
   margin-top: 60px;
+}
+
+header #logoSupport {
+  max-width: 200px;
+}
+header #titleSupport {
+  font-size: 40px;
+}
+
+.textSupport {
+  width: 85%;
+  margin: auto;
+  margin-top: 40px;
+}
+.textSupport p {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  line-height: 28px;
+}
+.textSupport #ps {
+  font-size: 16px;
+  color: #f7ff3c;
+}
+
+.supportForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  width: 85%;
+  margin: auto;
+  margin-bottom: 50px;
+}
+.supportForm label {
+  color: #4fd1c5;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.supportForm .input {
+  height: 40px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px rgba(255, 255, 255, 0.7) solid;
+  border-radius: 7px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  padding: 0 10px;
+  font-family: "caviar";
+}
+.supportForm .input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.supportForm .input:focus-visible {
+  outline: 1px solid transparent;
+  border: 3px #4fd1c5 solid;
+  border-radius: 7px;
+}
+.supportForm textarea {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px rgba(255, 255, 255, 0.7) solid;
+  border-radius: 7px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  padding: 0 10px;
+  font-family: "caviar";
+}
+.supportForm textarea::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.supportForm textarea:focus-visible {
+  outline: 1px solid transparent;
+  border: 3px #4fd1c5 solid;
+  border-radius: 7px;
+}
+.supportForm #buttonSupport {
+  min-width: calc(190px + 12px);
+  max-width: 200px;
+  font-size: 16px;
+  min-height: 48px;
 }
 
 /*# sourceMappingURL=style.css.map */
