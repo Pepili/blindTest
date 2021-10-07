@@ -22,7 +22,7 @@ mongoose
 d'ajouter les headers aux requêtes envoyées vers l'API,
 d'envoyer des requêtes avec les méthodes indiquées */
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://51.68.45.86");
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
