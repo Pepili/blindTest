@@ -24,6 +24,7 @@ d'ajouter les headers aux requêtes envoyées vers l'API,
 d'envoyer des requêtes avec les méthodes indiquées */
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
@@ -36,7 +37,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin: 'http://localhost:3000'}));
 // indique à express de gérer la ressource images de manière statique à chaque requête vers /images
 app.use("/images", express.static(path.join(__dirname, "images")));
 // indique à express de gérer la ressource music de manière statique à chaque requête vers /musics
