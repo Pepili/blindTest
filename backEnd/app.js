@@ -4,7 +4,7 @@ const cors = require('cors');
 // donne accès au chemin du système de fichier
 const path = require("path");
 const app = express();
-
+app.use(cors({origin: '*'}));
 const musicsRoutes = require("./routes/musics");
 const namesRoutes = require("./routes/names");
 const scoresRoutes = require("./routes/score");
@@ -37,7 +37,6 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-app.use(cors({origin: '*'}));
 // indique à express de gérer la ressource images de manière statique à chaque requête vers /images
 app.use("/images", express.static(path.join(__dirname, "images")));
 // indique à express de gérer la ressource music de manière statique à chaque requête vers /musics
