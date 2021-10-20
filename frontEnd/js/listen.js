@@ -57,6 +57,7 @@ function stopTime() {
   `;
   if (arrayList.length === index) {
     score.style.display = "block";
+    score.focus();
     nextButton.style.display = "none";
   }
   nextButton.focus();
