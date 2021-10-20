@@ -22,7 +22,7 @@ if(isset($_POST['mailform']))
 		';
 
 		$nom = $_POST['name'];
-    $email = $_POST['email'];
+    $email = $_POST['mail'];
     $message = $_POST['message'];
     $formcontent="De: $name \n Message: $message";
     $recipient = "lisa.genest02@gmail.com";
@@ -82,8 +82,6 @@ if(isset($_POST['mailform']))
       <label for="name">Message *</label>
       <textarea
         name="message"
-        rows="10"
-        cols="25"
         id="message"
         placeholder="Ecris ton message ici..."
       >
