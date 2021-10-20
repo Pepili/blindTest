@@ -13,7 +13,7 @@ const categoryButtonMusic = document.getElementById("categoryButtonMusic");
 const categoryButtonMusic2 = document.getElementById("categoryButtonMusic2");
 const types = [];
 const kinds = [];
-const serverUrl = "kelzic.com:3000";
+const serverUrl = "kelzic.com";
 sessionStorage.removeItem("score");
 sessionStorage.removeItem("type");
 sessionStorage.removeItem("musics");
