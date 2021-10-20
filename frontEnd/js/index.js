@@ -8,7 +8,7 @@ const serverUrl = "kelzic.com:3000";
 // On vérifie si l'user existe déjà dans la db
 function signupUser(username) {
   const data = JSON.stringify({ username });
-  fetch("http://+" + serverUrl + "/api/names/signup", {
+  fetch("http://" + serverUrl + "/api/names/signup", {
     method: "POST",
     headers: {
       "content-type": "application/json",
