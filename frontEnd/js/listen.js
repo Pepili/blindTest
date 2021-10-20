@@ -118,6 +118,7 @@ function clickResponse(e) {
     nextButton.focus();
     if (arrayList.length === index) {
       score.style.display = "block";
+      score.focus();
       nextButton.style.display = "none";
     }
   }
