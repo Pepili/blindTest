@@ -1,4 +1,5 @@
-.page {
+.page,
+footer {
   visibility: hidden;
   opacity: 0;
   animation: showPage 0.6s linear 3s forwards;
