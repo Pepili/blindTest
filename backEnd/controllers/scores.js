@@ -43,3 +43,14 @@ exports.searchScore = (req, res) => {
     .then((scores) => res.status(200).json(scores))
     .catch((error) => res.status(400).json({ error }));
 };
+
+exports.deleteScore = (req, res) => {
+  Score.findOne({ username: req.params.username })
+    .then((score) => {
+      score
+        .deleteOne({ username: req.params.username })
+        .then(() => res.status(200).json({ message: "score supprimé" }))
+        .catch((err) => res.status(400).json({ err }));
+    })
+    .catch((err) => res.status(500).json({ err }));
+};
