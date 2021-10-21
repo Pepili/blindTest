@@ -10,7 +10,7 @@ const musicBlind = document.getElementById("musicBlind");
 const time = document.getElementById("time");
 const score = document.getElementById("score");
 const nextButton = document.getElementById("nextButton");
-const serverUrl = "kelzic.com:3000";
+const serverUrl = "localhost:3000";
 const audioButton = document.getElementById("audioButton");
 const regexResponse =
   /^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ' -]{2,50}$/;
@@ -141,7 +141,7 @@ function addScore(data) {
       await responseUserScore.json();
       const scoreLocal = Number(sessionStorage.getItem("score"));
       if (responseUserScore.status === 201 && scoreLocal <= lengthMusic) {
-        /* window.location = "score.html"; */
+        window.location = "score.html";
       } else {
         alert("Enregistrement du score impossible");
       }
@@ -188,26 +188,37 @@ nextButton.addEventListener("click", () => {
 
 function recordScore(username, type, number, score) {
   const data = JSON.stringify({ username, type, number, score });
-  console.log(data);
+  const dataSearch = JSON.stringify({ username, type, number });
   // On vérifie si le score existe déjà dans la db
-  fetch("http://" + serverUrl + "/api/scores/", {
-    method: " POST",
+  fetch("http://" + serverUrl + "/api/scores/search", {
+    method: "POST",
     headers: {
       "content-type": "application/json",
     },
-    body: data,
+    body: dataSearch,
   })
     .then(async (responseScore) => {
       const response = await responseScore.json();
-      console.log(response);
-      if (response === null) {
+      if (response == null) {
         // On ajoute à la db le score de l'user
         addScore(data);
       } else {
-        console.log("oups");
+        fetch("http://" + serverUrl + "/api/scores/", {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: dataSearch,
+        })
+          .then(async (responseDelete) => {
+            await responseDelete.json();
+            // On ajoute à la db le score de l'user
+            addScore(data);
+          })
+          .catch(() => console.log("suppression impossible"));
       }
     })
-    .catch(() => console.log("error1"));
+    .catch(() => console.log("requete impossible"));
 }
 
 score.addEventListener("click", () => {

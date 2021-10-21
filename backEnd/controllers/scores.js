@@ -21,7 +21,6 @@ exports.searchOneScore = (req, res) => {
     username: req.body.username,
     type: req.body.type,
     number: req.body.number,
-    score: req.body.score,
   })
     .then((score) => res.status(200).json(score))
     .catch((err) => res.status(404).json({ err }));
@@ -56,7 +55,11 @@ exports.searchScore = (req, res) => {
 };
 
 exports.deleteScore = (req, res) => {
-  Score.findOne({ _id: req.body._id })
+  Score.findOne({
+    username: req.body.username,
+    type: req.body.type,
+    number: req.body.number,
+  })
     .then((score) => {
       score
         .deleteOne({ _id: req.body._id })
