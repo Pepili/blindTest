@@ -16,6 +16,17 @@ exports.createScore = (req, res) => {
     .catch((err) => res.status(500).json({ err }));
 };
 
+exports.searchOneScore = (req, res) => {
+  Score.findOne({
+    username: req.body.username,
+    type: req.body.type,
+    number: req.body.number,
+    score: req.body.score,
+  })
+    .then((score) => res.status(200).json(score))
+    .catch((err) => res.status(404).json({ err }));
+};
+
 exports.searchScore = (req, res) => {
   const { name, type, score, number } = req.body;
   const match = {};
@@ -45,12 +56,14 @@ exports.searchScore = (req, res) => {
 };
 
 exports.deleteScore = (req, res) => {
-  Score.findOne({ username: req.params.username })
+  Score.findOne({ _id: req.body._id })
     .then((score) => {
       score
-        .deleteOne({ username: req.params.username })
+        .deleteOne({ _id: req.body._id })
         .then(() => res.status(200).json({ message: "score supprimé" }))
         .catch((err) => res.status(400).json({ err }));
     })
-    .catch((err) => res.status(500).json({ err }));
+    .catch(() =>
+      res.status(500).json({ message: "impossible de trouver le score" })
+    );
 };

@@ -167,6 +167,7 @@ nextButton.addEventListener("click", () => {
 
 function recordScore(username, type, number, score) {
   const data = JSON.stringify({ username, type, number, score });
+  console.log(data);
   // On ajoute à la db le score de l'user
   fetch("http://" + serverUrl + "/api/scores/", {
     method: "POST",
@@ -179,7 +180,7 @@ function recordScore(username, type, number, score) {
       await responseUserScore.json();
       const scoreLocal = Number(sessionStorage.getItem("score"));
       if (responseUserScore.status === 201 && scoreLocal <= lengthMusic) {
-        window.location = "score.html";
+        /* window.location = "score.html"; */
       } else {
         alert("Enregistrement du score impossible");
       }

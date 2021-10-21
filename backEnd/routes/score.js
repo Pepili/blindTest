@@ -5,6 +5,9 @@ const scoreCtrl = require("../controllers/scores");
 // creation score
 router.post("/", scoreCtrl.createScore);
 
+//récupération d'un score
+router.get("/", scoreCtrl.searchOneScore);
+
 // récupération des scores
 router.post("/recover", scoreCtrl.searchScore);
 
