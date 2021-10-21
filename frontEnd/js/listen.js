@@ -127,6 +127,27 @@ function clickResponse(e) {
     alertMessage.style.display = "none";
   });
 }
+
+// On ajoute le score
+function addScore(data) {
+  fetch("http://" + serverUrl + "/api/scores/", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: data,
+  })
+    .then(async (responseUserScore) => {
+      await responseUserScore.json();
+      const scoreLocal = Number(sessionStorage.getItem("score"));
+      if (responseUserScore.status === 201 && scoreLocal <= lengthMusic) {
+        /* window.location = "score.html"; */
+      } else {
+        alert("Enregistrement du score impossible");
+      }
+    })
+    .catch(() => console.log("error"));
+}
 // permet de lancer la lecture de la musique et d'activer le minuteur
 play.addEventListener("click", () => {
   musicBlind
@@ -168,24 +189,25 @@ nextButton.addEventListener("click", () => {
 function recordScore(username, type, number, score) {
   const data = JSON.stringify({ username, type, number, score });
   console.log(data);
-  // On ajoute à la db le score de l'user
+  // On vérifie si le score existe déjà dans la db
   fetch("http://" + serverUrl + "/api/scores/", {
-    method: "POST",
+    method: " POST",
     headers: {
       "content-type": "application/json",
     },
     body: data,
   })
-    .then(async (responseUserScore) => {
-      await responseUserScore.json();
-      const scoreLocal = Number(sessionStorage.getItem("score"));
-      if (responseUserScore.status === 201 && scoreLocal <= lengthMusic) {
-        /* window.location = "score.html"; */
+    .then(async (responseScore) => {
+      const response = await responseScore.json();
+      console.log(response);
+      if (response === null) {
+        // On ajoute à la db le score de l'user
+        addScore(data);
       } else {
-        alert("Enregistrement du score impossible");
+        console.log("oups");
       }
     })
-    .catch(() => console.log("error"));
+    .catch(() => console.log("error1"));
 }
 
 score.addEventListener("click", () => {
