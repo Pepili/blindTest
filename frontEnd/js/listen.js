@@ -10,7 +10,6 @@ const musicBlind = document.getElementById("musicBlind");
 const time = document.getElementById("time");
 const score = document.getElementById("score");
 const nextButton = document.getElementById("nextButton");
-const serverUrl = "localhost:3000";
 const audioButton = document.getElementById("audioButton");
 const regexResponse =
   /^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ' -]{2,50}$/;
@@ -130,7 +129,7 @@ function clickResponse(e) {
 
 // On ajoute le score
 function addScore(data) {
-  fetch("http://" + serverUrl + "/api/scores/", {
+  fetch(config.apiUrl + "/api/scores/", {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -190,7 +189,7 @@ function recordScore(username, type, number, score) {
   const data = JSON.stringify({ username, type, number, score });
   const dataSearch = JSON.stringify({ username, type, number });
   // On vérifie si le score existe déjà dans la db
-  fetch("http://" + serverUrl + "/api/scores/search", {
+  fetch(config.apiUrl + "/api/scores/search", {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -203,7 +202,7 @@ function recordScore(username, type, number, score) {
         // On ajoute à la db le score de l'user
         addScore(data);
       } else {
-        fetch("http://" + serverUrl + "/api/scores/", {
+        fetch(config.apiUrl + "/api/scores/", {
           method: "DELETE",
           headers: {
             "content-type": "application/json",
