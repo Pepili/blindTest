@@ -63,6 +63,9 @@
       border: 5px solid $color-primary;
       box-shadow: 0 20px 50px rgb(23, 82, 90);
       border-radius: 8px;
+      @media all and (max-width: 600px) {
+        width: 80%;
+      }
     }
 
     /* for chrome/safari */
