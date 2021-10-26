@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST['mailform']))
 {
-	if(!empty($_POST['nom']) AND !empty($_POST['mail']) AND !empty($_POST['message']))
+	if(!empty($_POST['name']) AND !empty($_POST['email']) AND !empty($_POST['message']))
 	{
 		$header="MIME-Version: 1.0\r\n";
 		$header.='From:"kelzic.com"<lisa.genest02@gmail.com>'."\n";
@@ -12,8 +12,8 @@ if(isset($_POST['mailform']))
 		<html>
 			<body>
 				<div align="center">
-					<u>Nom de l\'expéditeur :</u>'.$_POST['nom'].'<br />
-					<u>Mail de l\'expéditeur :</u>'.$_POST['mail'].'<br />
+					<u>Nom de l\'expéditeur :</u>'.$_POST['name'].'<br />
+					<u>Mail de l\'expéditeur :</u>'.$_POST['email'].'<br />
 					<br />
 					'.nl2br($_POST['message']).'
 				</div>
@@ -22,15 +22,15 @@ if(isset($_POST['mailform']))
 		';
 
 		$nom = $_POST['name'];
-    $email = $_POST['mail'];
+    $email = $_POST['email'];
     $message = $_POST['message'];
     $formcontent="De: $name \n Message: $message";
     $recipient = "lisa.genest02@gmail.com";
     $subject = "Formulaire kelZic";
     $mailheader = "De : $email \r\n";
-    mail($recipient, $subject, $formcontent, $mailheader);
+    $res = mail($recipient, $subject, $formcontent, $mailheader);
 		$msg="Votre message a bien été envoyé !";
-  }	else {
+  }	else { 
 		$msg="Tous les champs doivent être complétés !";
 	} 
 }
@@ -69,7 +69,7 @@ if(isset($_POST['mailform']))
     </div>
     <form class="supportForm" action="" method="POST">
       <label for="name">Nom *</label>
-      <input type="text" class="input" name="name" id="name" value="<?php if(isset($_POST['nom'])) { echo $_POST['nom']; } ?>" placeholder="ex: John" />
+      <input type="text" class="input" name="name" id="name" value="<?php if(isset($_POST['name'])) { echo $_POST['name']; } ?>" placeholder="ex: John" />
       <label for="name">Email *</label>
       <input
         type="text"
@@ -77,7 +77,7 @@ if(isset($_POST['mailform']))
         id="email"
         class="input"
         placeholder="ex: JohnSmith@gmail.com"
-        value="<?php if(isset($_POST['mail'])) { echo $_POST['mail']; } ?>"
+        value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } ?>"
       />
       <label for="name">Message *</label>
       <textarea
@@ -85,12 +85,12 @@ if(isset($_POST['mailform']))
         id="message"
         placeholder="Ecris ton message ici..."
       >
-         <?php if(isset($_POST['message'])) { echo $_POST['message']; } ?>
+      <?php if(isset($_POST['message'])) { echo $_POST['message']; } ?>
       </textarea> <br />
       <input type="submit" value="Envoyer" class="button" id="buttonSupport" name="mailform"/>
     </form>
     <?php
-		  if(isset($msg))
+		  if($msg)
 		  {
 			  echo $msg;
 		  }
