@@ -163,6 +163,7 @@ body {
   color: #f7ff3c;
   font-family: "crooked";
   line-height: 66px;
+  text-decoration: none;
 }
 .headerCategory .logoGifCategory {
   width: 120px;
