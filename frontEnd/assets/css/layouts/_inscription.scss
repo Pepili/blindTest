@@ -1,0 +1,73 @@
+header {
+  .returnArrow {
+    width: 100%;
+    #return {
+      color: $color-secondary;
+      font-size: 18px;
+    }
+  }
+}
+.buttonStart {
+  .inscription {
+    color: $color-secondary;
+    font-size: 15px;
+    letter-spacing: 1.3px;
+    margin-bottom: 0;
+    margin-top: 30px;
+  }
+  .listPasswordRules {
+    width: 100%;
+    text-align: left;
+    .passwordRules {
+      font-size: 14px;
+      margin-top: 8px;
+    }
+    ul {
+      margin: 0;
+      list-style: none;
+      text-align: left;
+      padding-left: 5px;
+      li {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 13px;
+        &::before {
+          content: "";
+          color: $color-secondary;
+          display: inline-block;
+          width: 3px;
+          height: 3px;
+          border: $color-secondary solid 1px;
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+  .wrapInscription {
+    margin-top: 0;
+  }
+}
+
+.emailSend {
+  display: none;
+  flex-direction: column;
+  margin: auto;
+  width: 80%;
+  margin-top: 105px;
+  text-align: center;
+  h1 {
+    font-size: 20px;
+    color: $color-primary;
+  }
+  p {
+    color: $color-quaternary;
+    line-height: 20px;
+  }
+  .psMessage {
+    font-size: 14px;
+  }
+  i {
+    color: $color-secondary;
+    font-size: 20px;
+  }
+}

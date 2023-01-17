@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="KelZic est un blind test sur les films, séries, jeux-vidéos, dessin-animés et émissions télé
+      à jouer seul ou en équipe!"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/fontawesome/css/all.min.css" />
+    <title>KelZic</title>
+  </head>
+  <body>
+    <div class="pageOne">
+      <header class="headerWelcome">
+        <img class="logoGif" alt="logo" src="assets/images/logo4.png" />
+        <h1 class="titleWelcome">KelZic</h1>
+      </header>
+      <section class="buttonStart">
+        <p>
+          Bienvenue sur le blind test "KelZic"! Connecte-toi ou clique sur jouer
+          en tant qu'inviter pour pouvoir commencer une partie!
+        </p>
+        <h2 class="connexion">Se connecter</h2>
+        <form class="formName">
+          <input
+            type="text"
+            required
+            minlength="6"
+            maxlength="40"
+            class="login"
+            id="email"
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            required
+            minlength="8"
+            class="login"
+            id="password"
+            placeholder="Mot de passe"
+          />
+        </form>
+        <div class="alertUser" id="alertUser"></div>
+        <div class="linkForgetPassword">
+          <a id="passwordForget" href="./assets/html/passwordForget.html"
+            >Mot de passe oublié</a
+          >
+        </div>
+        <div class="otherOption">
+          <a id="inscription" href="./assets/html/inscription.html"
+            >S'inscrire</a
+          >
+          <a id="guest" href="#">Jouer en tant qu'invité</a>
+        </div>
+        <div class="wrap">
+          <audio src="assets/musics/button.mp3" id="audioButton"></audio>
+          <button class="button" id="buttonReady">Commencer</button>
+        </div>
+      </section>
+    </div>
+    <script src="./config/config.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

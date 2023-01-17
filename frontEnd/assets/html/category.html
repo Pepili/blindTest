@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kelzic est un blind test sur les films, séries, jeux-vidéos, dessin-animés et émissions télé
+      à jouer seul ou en équipe!"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css" />
+    <title>KelZic</title>
+  </head>
+  <body>
+    <div class="loaderCategory">
+      <div id="namePlayer"></div>
+      <div class="welcomeLoader">
+        <p class="niceSeeYou">Ravie de te voir <i class="far fa-heart"></i></p>
+        <p>C'est prêt dans quelques secondes !</p>
+      </div>
+      <div class="ball-loader">
+        <div class="ball-loader-ball ball1"></div>
+        <div class="ball-loader-ball ball2"></div>
+        <div class="ball-loader-ball ball3"></div>
+      </div>
+    </div>
+    <div class="categoryPage">
+      <header class="headerCategory">
+        <a href="/index.html" class="titleLogo">KelZic</a>
+        <div id="accessProfil"></div>
+      </header>
+      <section class="sectionCategory">
+        <div class="checkDiv" id="checkDiv">
+          <i class="fas fa-times" id="crossCheck"></i>
+          <div class="titleCheck">
+            <h3 id="titleCategoryMusicCheck" class="titleCategoryMusic"></h3>
+            <p class="legendCheck">
+              Choisis au moins 2 catégories dans la liste:
+            </p>
+            <form class="checkType" id="checkType">
+              <p>
+                <input type="checkbox" id="filmBox" name="type" value="Films" />
+                <label for="filmBox" type="Films">Films</label>
+              </p>
+              <p>
+                <input
+                  type="checkbox"
+                  id="dessinAnimeBox"
+                  name="type"
+                  value="Dessin-animés"
+                />
+                <label for="dessinAnimeBox" type="Dessin-animés"
+                  >Dessin-animés</label
+                >
+              </p>
+              <p>
+                <input
+                  type="checkbox"
+                  id="emissionBox"
+                  name="type"
+                  value="Emissions télé"
+                />
+                <label for="emissionBox" type="Emissions télé"
+                  >Emissions télé</label
+                >
+              </p>
+              <p>
+                <input
+                  type="checkbox"
+                  id="jeuxvideoBox"
+                  name="type"
+                  value="Jeux-vidéos"
+                />
+                <label for="jeuxvideoBox" type="Jeux-vidéos">Jeux-vidéos</label>
+              </p>
+              <p>
+                <input
+                  type="checkbox"
+                  id="mangasBox"
+                  name="type"
+                  value="Mangas"
+                />
+                <label for="mangasBox" type="Mangas">Mangas</label>
+              </p>
+              <p>
+                <input
+                  type="checkbox"
+                  id="seriesBox"
+                  name="type"
+                  value="Séries"
+                />
+                <label for="seriesBox" type="Séries">Séries</label>
+              </p>
+            </form>
+            <button class="startButtonMusic" id="categoryButtonMusic">
+              Suivant
+            </button>
+            <div class="alertMessage" id="alertMessageCheck">
+              Il faut sélectionner au moins 2 catégories de musique!
+            </div>
+          </div>
+        </div>
+
+        <div class="checkDiv" id="checkDiv2">
+          <i class="fas fa-times" id="crossCheck2"></i>
+          <div class="titleCheck">
+            <h3 id="titleCategoryMusicCheck2" class="titleCategoryMusic"></h3>
+            <p class="legendCheck">
+              Choisis au moins 1 type de mangas dans la liste:
+            </p>
+            <form class="checkType" id="checkType2">
+              <p>
+                <input
+                  type="checkbox"
+                  id="shojoBox"
+                  name="type"
+                  value="shojo"
+                />
+                <label for="shojoBox" type="shojo">Shojo, Yaoi, Yuri</label>
+              </p>
+              <p>
+                <input
+                  type="checkbox"
+                  id="shonenBox"
+                  name="type"
+                  value="shonen"
+                />
+                <label for="shonenBox" type="shonen">Shonen</label>
+              </p>
+            </form>
+            <button class="startButtonMusic" id="categoryButtonMusic2">
+              Suivant
+            </button>
+            <div class="alertMessage" id="alertMessageCheck2">
+              Il faut sélectionner au moins 1 type de mangas!
+            </div>
+          </div>
+        </div>
+
+        <div id="startMusic">
+          <i class="fas fa-times" id="cross"></i>
+          <div class="elementStart">
+            <h3 id="titleCategoryMusic" class="titleCategoryMusic"></h3>
+            <form>
+              <label for="numberMusic">Choisissez le nombre de musiques</label>
+              <span id="rangeValue">10</span>
+              <input
+                type="range"
+                min="10"
+                value="10"
+                class="slider"
+                id="myRange"
+                step="10"
+                name="numberMusic"
+                onchange="rangeSlide(this.value)"
+                onmousemove="rangeSlide(this.value)"
+              />
+            </form>
+            <audio src="/assets/musics/button.mp3" id="audioButton"></audio>
+            <button class="startButtonMusic" id="startButtonMusic">
+              C'est parti !
+            </button>
+          </div>
+        </div>
+        <div class="scriptCategory" id="scriptCategory">
+          <h2 class="titleCategory">Catégories</h2>
+          <div class="nameCategory">
+            <audio src="/assets/musics/category.mp3" id="audioCategory"></audio>
+            <ul id="listCategory">
+              <li class="categoryBlue" type="Toute Catégories">
+                Toute Catégories
+              </li>
+              <li class="categoryYellow" type="Films">Films</li>
+              <li class="categoryBlue" type="Dessin-animés">Dessin-animés</li>
+              <li class="categoryYellow" type="Emissions télé">
+                Emissions télé
+              </li>
+              <li class="categoryBlue" type="Jeux-vidéos">Jeux-vidéos</li>
+              <li class="categoryYellow" type="Mangas">Mangas</li>
+              <li class="categoryBlue" type="Séries">Séries</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <footer class="footerListen">
+        <a href="support.html" alt="support" id="support">Support</a>
+      </footer>
+    </div>
+
+    <script src="../../config/config.js"></script>
+    <script src="/js/category.js"></script>
+  </body>
+</html>

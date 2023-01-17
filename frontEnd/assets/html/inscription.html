@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="KelZic est un blind test sur les films, séries, jeux-vidéos, dessin-animés et émissions télé
+      à jouer seul ou en équipe!"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css" />
+    <title>KelZic</title>
+  </head>
+  <body>
+    <div class="pageOne" id="inscriptionPage">
+      <header class="headerWelcome">
+        <div class="returnArrow">
+          <i class="fas fa-arrow-left" id="return"></i>
+        </div>
+        <img class="logoGif" alt="logo" src="../images/logo4.png" />
+        <h1 class="titleWelcome">KelZic</h1>
+      </header>
+      <section class="buttonStart">
+        <p>Inscris-toi et suis l'évolution de tes scores !</p>
+        <h2 class="inscription">S'inscrire</h2>
+        <form class="formName">
+          <input
+            type="text"
+            required
+            minlength="6"
+            maxlength="40"
+            class="login"
+            id="username"
+            placeholder="Pseudo*"
+          />
+          <input
+            type="text"
+            required
+            minlength="6"
+            maxlength="40"
+            class="login"
+            id="email"
+            placeholder="Email*"
+          />
+          <input
+            type="password"
+            required
+            minlength="8"
+            class="login"
+            id="password"
+            placeholder="Mot de passe*"
+          />
+          <input
+            type="password"
+            required
+            minlength="8"
+            class="login"
+            id="passwordValidate"
+            placeholder="valide ton mot de passe*"
+          />
+          <div class="listPasswordRules">
+            <p class="passwordRules">
+              ton mot de passe doit contenir au moins:
+            </p>
+            <ul>
+              <li>8 caractères</li>
+              <li>Une majuscule</li>
+              <li>Une minuscule</li>
+              <li>Un caractère spécial</li>
+              <li>Un chiffre</li>
+            </ul>
+          </div>
+        </form>
+        <div class="alertUser" id="alertUser"></div>
+        <div class="wrap wrapInscription">
+          <audio src="../musics/button.mp3" id="audioButton"></audio>
+          <button class="button" id="buttonReady">S'inscrire</button>
+        </div>
+      </section>
+    </div>
+    <div class="emailSend" id="emailSend">
+      <h1>Bienvenue !</h1>
+      <p>
+        Ton inscription est presque terminé, tu dois maintenant valider ton
+        adresse mail afin de profiter de ton compte fraîchement créer!
+      </p>
+      <p class="psMessage">ps: tu peux fermer cette page...</p>
+      <i class="far fa-smile-wink"></i>
+    </div>
+    <script src="../../config/config.js"></script>
+    <script src="/js/inscription.js"></script>
+  </body>
+</html>

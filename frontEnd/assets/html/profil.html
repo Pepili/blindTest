@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="KelZic est un blind test sur les films, séries, jeux-vidéos, dessin-animés et émissions télé
+      à jouer seul ou en équipe!"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css" />
+    <title>KelZic</title>
+  </head>
+  <body>
+    <div class="pageOne" id="inscriptionPage">
+      <header class="headerWelcome">
+        <div class="returnArrow">
+          <i class="fas fa-arrow-left" id="return"></i>
+        </div>
+        <h1 id="pseudoProfil">Profil</h1>
+        <p id="parentheseProfil">(Seul toi peut voir ses informations)</p>
+      </header>
+      <section class="profilSection">
+        <div class="ongletProfil">
+          <ul>
+            <li id="scoreLi">
+              <input
+                type="radio"
+                id="scoresBox"
+                name="type"
+                value="score"
+                checked
+              />
+              <label for="scoresBox" type="scores">Scores</label>
+            </li>
+            <li id="modifyLi">
+              <input type="radio" id="modifyBox" name="type" value="modifier" />
+              <label for="modifyBox" type="modify">Modifier</label>
+            </li>
+          </ul>
+          <div>
+            <p id="logout">Se déconnecter</p>
+            <p id="delete">Supprimer son compte</p>
+          </div>
+        </div>
+        <div class="profilUserInfo" id="profilUserInfo">
+          <div id="infoProfil">
+            <h2 class="inscription">Infos</h2>
+            <div id="infoProfilUser"></div>
+          </div>
+          <div id="scoreUser">
+            <h2>Tes scores</h2>
+            <div id="noScore"></div>
+            <div class="withScore" id="withScore">
+              <table class="scoreList" id="scoreList">
+                <thead class="profilScore" id="idProfilScore">
+                  <tr>
+                    <th class="typeTitle">Types</th>
+                    <th class="scoreTitle">Scores</th>
+                    <th class="dateTitle">Obtenu le:</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modifyUser" id="modifyUser">
+          <h1 class="params">Paramètres</h1>
+          <form class="formSettings" id="formSettings">
+            <input
+              type="text"
+              name="userName"
+              id="userName"
+              minlength="3"
+              maxlength="30"
+              placeholder="Changer son pseudo"
+            />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Changer d'adresse mail"
+            />
+            <fieldset class="changePassword">
+              <legend>Changer de mot de passe</legend>
+              <input
+                type="password"
+                required
+                minlength="8"
+                class="login"
+                id="password"
+                placeholder="Mot de passe"
+              />
+              <input
+                type="password"
+                required
+                minlength="8"
+                class="login"
+                id="passwordValidate"
+                placeholder="valide ton mot de passe"
+              />
+            </fieldset>
+          </form>
+          <div class="alertUser" id="alertUser"></div>
+          <div class="wrap wrapModify">
+            <audio src="../musics/button.mp3" id="audioButton"></audio>
+            <button class="buttonModify" id="buttonReady">Sauvegarder</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="../../config/config.js"></script>
+    <script src="/js/profil.js"></script>
+  </body>
+</html>

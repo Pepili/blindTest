@@ -1,0 +1,127 @@
+header {
+  #logoSupport {
+    max-width: 200px;
+  }
+  #titleSupport {
+    font-size: 40px;
+  }
+}
+.textSupport {
+  width: 85%;
+  margin: auto;
+  margin-top: 40px;
+  p {
+    color: white;
+    font-size: 17px;
+    text-align: center;
+    line-height: 28px;
+  }
+  #ps {
+    font-size: 14px;
+    color: $color-secondary;
+  }
+}
+.contact {
+  text-align: center;
+  margin-top: 50px;
+}
+.mailto {
+  color: $color-primary;
+  text-decoration: none;
+  font-family: "caviar";
+  min-width: 200px;
+  min-height: 60px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  border-radius: 20px;
+  border: 4px solid #00ffcb;
+  box-shadow: 0 0 60px rgba(0, 255, 203, 0.64);
+  cursor: pointer;
+  outline: none;
+  z-index: 2;
+  padding: 10px;
+  position: relative;
+  &:hover {
+    color: #313133;
+    &::after {
+      opacity: 1;
+    }
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0;
+    border-radius: 16px;
+    transition: opacity 500ms ease-in-out;
+    background: $color-primary;
+    box-shadow: 0 0 60px rgba(0, 255, 203, 0.64);
+  }
+}
+.footerContact {
+  margin-top: 80px;
+}
+.supportForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  width: 85%;
+  margin: auto;
+  margin-bottom: 50px;
+  label {
+    color: $color-primary;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .input {
+    height: 40px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 2px rgba(255, 255, 255, 0.7) solid;
+    border-radius: 7px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    padding: 0 10px;
+    font-family: "caviar";
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    &:focus-visible {
+      outline: 1px solid transparent;
+      border: 3px #4fd1c5 solid;
+      border-radius: 7px;
+    }
+  }
+  textarea {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 2px rgba(255, 255, 255, 0.7) solid;
+    border-radius: 7px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    padding: 0 10px;
+    font-family: "caviar";
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    &:focus-visible {
+      outline: 1px solid transparent;
+      border: 3px #4fd1c5 solid;
+      border-radius: 7px;
+    }
+  }
+  #buttonSupport {
+    min-width: calc(190px + 12px);
+    max-width: 200px;
+    font-size: 16px;
+    min-height: 48px;
+  }
+}

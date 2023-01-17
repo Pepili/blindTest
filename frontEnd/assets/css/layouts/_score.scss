@@ -1,0 +1,77 @@
+#scoreTitleHeader {
+  font-size: 30px;
+}
+#logoScore {
+  max-width: 200px;
+}
+.scoreSection {
+  text-align: center;
+  #scoreUser {
+    color: $color-secondary;
+    letter-spacing: 1.2px;
+    margin-top: 60px;
+  }
+
+  .scoreList {
+    margin-top: 10px;
+    border-collapse: collapse;
+    background: #02303e59;
+    width: 95%;
+    max-width: 700px;
+    box-sizing: border-box;
+    margin: auto;
+    #titleTable {
+      font-size: 22px;
+      color: $color-primary;
+      letter-spacing: 1.2px;
+      margin-bottom: 30px;
+    }
+    th {
+      border: 2px solid #4fd1c5;
+      box-shadow: 0 -6px 50px #17525a;
+      font-size: 20px;
+      padding: 20px;
+      letter-spacing: 1.2px;
+    }
+    .pseudoTitle {
+      color: white;
+    }
+    .scoreTitle {
+      color: $color-secondary;
+    }
+  }
+  #tbody {
+    td {
+      border: 1px solid #4fd1c5;
+      box-shadow: 0 0px 16px #17525a;
+      padding: 15px;
+      font-size: 18px;
+    }
+    .pseudo {
+      color: white;
+      letter-spacing: 1.2px;
+    }
+    .score {
+      color: $color-secondary;
+      font-family: "digital";
+      font-size: 25px;
+    }
+  }
+  #listButton {
+    display: flex;
+    flex-direction: column;
+    #linkAccueil {
+      color: $color-secondary;
+      font-size: 18px;
+      letter-spacing: 1.2px;
+      text-decoration: none;
+      margin-bottom: 50px;
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+  #returnButton {
+    margin-top: 60px;
+  }
+}
